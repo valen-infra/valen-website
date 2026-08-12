@@ -1,0 +1,17 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="valenGradIcon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38ef7d" />
+      <stop offset="100%" stop-color="#00d094" />
+    </linearGradient>
+    <linearGradient id="valenGradDarkIcon" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#00d094" stop-opacity="0.7" />
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="#0b1219" stroke="url(#valenGradIcon)" stroke-width="2" stroke-opacity="0.5" />
+  <path d="M 16 18 L 32 50 L 23 50 L 11 18 Z" fill="url(#valenGradIcon)" />
+  <path d="M 30 18 H 34 V 40 H 30 Z" fill="url(#valenGradDarkIcon)" />
+  <path d="M 48 18 L 32 50 L 41 50 L 53 18 Z" fill="url(#valenGradIcon)" />
+  <circle cx="32" cy="12" r="3.5" fill="#38ef7d" />
+</svg>

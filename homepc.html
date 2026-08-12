@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Valen Info | High-Tech IT Solutions &amp; Digital Agency</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#484847",
+                    "primary": "#44edae",
+                    "surface-container-lowest": "#0c0f0f",
+                    "primary-container": "#00d094",
+                    "on-secondary": "#313030",
+                    "on-secondary-fixed-variant": "#474646",
+                    "on-primary-fixed-variant": "#005138",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "on-error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "neon-glow": "rgba(0, 208, 148, 0.3)",
+                    "on-error": "#690005",
+                    "surface-variant": "#333535",
+                    "text-muted": "#A0A0A0",
+                    "on-primary-fixed": "#002114",
+                    "on-surface": "#e2e2e2",
+                    "on-primary": "#003825",
+                    "surface-container-low": "#1a1c1c",
+                    "surface-container-highest": "#333535",
+                    "surface-dim": "#121414",
+                    "background": "#121414",
+                    "inverse-surface": "#e2e2e2",
+                    "error-container": "#93000a",
+                    "inverse-on-surface": "#2f3131",
+                    "primary-fixed": "#59fdbd",
+                    "tertiary-fixed": "#e5e2e1",
+                    "tertiary-container": "#b8b6b6",
+                    "outline-variant": "#3c4a42",
+                    "on-primary-container": "#005339",
+                    "on-secondary-container": "#bab8b7",
+                    "on-surface-variant": "#bacac0",
+                    "secondary": "#c8c6c5",
+                    "surface-container": "#1e2020",
+                    "surface-glass": "rgba(255, 255, 255, 0.05)",
+                    "on-tertiary": "#313030",
+                    "on-tertiary-fixed-variant": "#474746",
+                    "inverse-primary": "#006c4b",
+                    "surface-tint": "#30e0a3",
+                    "outline": "#85948b",
+                    "surface-container-high": "#282a2b",
+                    "surface-bright": "#37393a",
+                    "error": "#ffb4ab",
+                    "surface": "#121414",
+                    "secondary-fixed": "#e5e2e1",
+                    "secondary-container": "#4a4949",
+                    "on-background": "#e2e2e2",
+                    "tertiary": "#d4d2d1",
+                    "primary-fixed-dim": "#30e0a3",
+                    "on-tertiary-fixed": "#1c1b1b",
+                    "tertiary-fixed-dim": "#c8c6c5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-gap": "120px",
+                    "stack-md": "16px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "display-lg": ["Montserrat"],
+                    "label-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg-mobile": ["Montserrat"]
+            },
+            "fontSize": {
+                    "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .neon-glow-btn:hover {
+            box-shadow: 0 0 20px rgba(0, 208, 148, 0.4);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .reveal-on-scroll { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        .reveal-on-scroll.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary/30">
+<!-- Header Section -->
+<header class="fixed top-0 w-full z-50">
+<!-- Top Bar -->
+<div class="hidden md:flex bg-surface-container-lowest/90 backdrop-blur-md px-gutter h-12 border-b border-white/5 items-center justify-between">
+<div class="flex gap-6 text-label-sm text-text-muted">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary">phone</span>
+<span>2-965-871-8617</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary">mail</span>
+<span>example@gmail.com</span>
+</div>
+</div>
+<div class="flex gap-4 items-center">
+<span class="text-label-sm text-text-muted">For Client Support: <span class="text-on-surface">2-965-871-8617</span></span>
+<div class="flex gap-3 ml-4 border-l border-white/10 pl-4">
+<a class="text-text-muted hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">qr_code_2</span></a>
+<a class="text-text-muted hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">share</span></a>
+</div>
+</div>
+</div>
+<!-- Main Nav -->
+<nav class="bg-background/80 backdrop-blur-xl h-20 px-gutter border-b border-white/5">
+<div class="max-w-container-max mx-auto h-full flex justify-between items-center">
+<a class="text-headline-md font-bold text-primary flex items-center gap-2" href="#">
+                    <img src="/logo.svg" alt="Valen Info Logo" class="h-9 w-auto" />
+                </a>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md" href="#">Home</a>
+<a class="text-on-surface/80 font-medium hover:text-primary transition-colors font-label-md" href="#">About</a>
+<div class="group relative">
+<button class="flex items-center gap-1 text-on-surface/80 font-medium group-hover:text-primary transition-colors font-label-md">Service <span class="material-symbols-outlined text-sm">expand_more</span></button>
+</div>
+<div class="group relative">
+<button class="flex items-center gap-1 text-on-surface/80 font-medium group-hover:text-primary transition-colors font-label-md">Project <span class="material-symbols-outlined text-sm">expand_more</span></button>
+</div>
+<a class="text-on-surface/80 font-medium hover:text-primary transition-colors font-label-md" href="#">Pages</a>
+<a class="text-on-surface/80 font-medium hover:text-primary transition-colors font-label-md" href="#">Blog</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="hidden lg:block bg-primary text-on-primary px-6 py-2.5 rounded font-label-md neon-glow-btn transition-all duration-300" href="#">Get A Quote</a>
+<button class="md:hidden text-on-surface"><span class="material-symbols-outlined text-3xl">menu</span></button>
+</div>
+</div>
+</nav>
+</header>
+<!-- Hero Section -->
+<section class="relative pt-32 pb-20 md:pt-52 md:pb-32 overflow-hidden">
+<div class="max-w-container-max mx-auto px-gutter grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+<div class="space-y-8 max-w-2xl">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-md">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    Innovative Digital Agency
+                </div>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg leading-tight">
+                    Set Your <span class="text-primary">Business</span> <br/> New Ideas.
+                </h1>
+<p class="text-body-lg text-text-muted leading-relaxed">
+                    Curabitur sed facilisis erat. Vestibulum pharetra eros eget fringilla porttitor. oltorrent gongi Duis a orci nunc. Suspendisse ac convallis sapien, quis commodo libero. Donec nec duomoi luctus.
+                </p>
+<div class="flex flex-col sm:flex-row gap-6 pt-4">
+<a class="bg-primary text-on-primary px-8 py-4 rounded-lg font-label-md text-center neon-glow-btn transition-all" href="#">Free Consultancy</a>
+<a class="group flex items-center justify-center gap-2 text-on-surface font-label-md border border-white/10 px-8 py-4 rounded-lg hover:bg-white/5 transition-all" href="#">
+                        VIEW ALL WORK
+                        <span class="material-symbols-outlined group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">north_east</span>
+</a>
+</div>
+<div class="pt-8 flex items-center gap-6">
+<p class="text-label-sm text-text-muted uppercase tracking-wider">Review On</p>
+<div class="flex items-center gap-2">
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="font-label-md text-on-surface">5.0/5.0</span>
+</div>
+</div>
+</div>
+<div class="relative group">
+<div class="relative w-full aspect-[4/5] md:aspect-square overflow-hidden rounded-[40px] md:rounded-[80px] border border-white/10">
+<img alt="Valen Info Team working on innovative digital business solutions" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="/images/hero-team.png"/>
+</div>
+<!-- Decorative Images Floating -->
+<div class="absolute -bottom-10 -left-10 w-48 h-48 rounded-3xl overflow-hidden border-4 border-background hidden md:block">
+<img alt="Collaborative workshop for business strategy" class="w-full h-full object-cover" src="/images/hero-workshop.png"/>
+</div>
+<div class="absolute top-10 -right-10 w-56 h-56 rounded-full overflow-hidden border-4 border-background hidden lg:block">
+<img alt="Technical developer workspace" class="w-full h-full object-cover" src="/images/hero-workspace.png"/>
+</div>
+</div>
+</div>
+<!-- Ambient Glow -->
+<div class="absolute top-1/4 -right-1/4 w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none"></div>
+</section>
+<!-- Stats Section -->
+<section class="py-20 relative z-10">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+<div class="glass-panel p-8 rounded-2xl text-center group transition-all hover:bg-primary/5">
+<h3 class="text-headline-lg text-primary font-bold mb-1">5</h3>
+<p class="text-label-md text-text-muted mb-1">Years</p>
+<p class="text-label-sm text-text-muted/60">Working With Passion</p>
+</div>
+<div class="glass-panel p-8 rounded-2xl text-center group transition-all hover:bg-primary/5">
+<h3 class="text-headline-lg text-primary font-bold mb-1">1.5k</h3>
+<p class="text-label-md text-text-muted mb-1">Customer</p>
+<p class="text-label-sm text-text-muted/60">Satisfied Customer</p>
+</div>
+<div class="glass-panel p-8 rounded-2xl text-center group transition-all hover:bg-primary/5">
+<h3 class="text-headline-lg text-primary font-bold mb-1">800</h3>
+<p class="text-label-md text-text-muted mb-1">Project</p>
+<p class="text-label-sm text-text-muted/60">We Have Completed</p>
+</div>
+<div class="glass-panel p-8 rounded-2xl text-center group transition-all hover:bg-primary/5">
+<h3 class="text-headline-lg text-primary font-bold mb-1">15</h3>
+<p class="text-label-md text-text-muted mb-1">Awards</p>
+<p class="text-label-sm text-text-muted/60">Achievement For Service</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Why Choose Us -->
+<section class="py-section-gap">
+<div class="max-w-container-max mx-auto px-gutter grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="order-2 lg:order-1 relative">
+<div class="rounded-3xl overflow-hidden">
+<img alt="Valen Info IT experts collaborating" class="w-full h-auto object-cover rounded-3xl" src="/images/why-choose-us.png"/>
+</div>
+<div class="absolute -bottom-6 -right-6 bg-primary p-8 rounded-2xl shadow-xl hidden md:block">
+<p class="text-label-md text-on-primary/80 mb-2">Market Leader</p>
+<h3 class="text-headline-lg font-bold text-on-primary">#1</h3>
+</div>
+</div>
+<div class="order-1 lg:order-2 space-y-8">
+<div class="space-y-4">
+<span class="text-primary font-label-md uppercase tracking-widest">Why Choose Us</span>
+<h2 class="text-headline-lg font-bold">Unlock the potential of your business.</h2>
+<h4 class="text-body-lg text-primary font-semibold italic">Best Creative IT Agency And Solutions Since 2005.</h4>
+<p class="text-body-md text-text-muted leading-relaxed">
+                        Morbi interdum pellentesque nunc, luctus pretium nullagoneq luctus at. Aliquam cursus nunc arcu, condimentum efficiturunt tellus iaculis faucibus Quisque gravida.
+                    </p>
+</div>
+<div class="grid gap-6">
+<div class="flex gap-6 items-start">
+<div class="w-16 h-16 rounded-full border-2 border-primary/20 flex-shrink-0 flex items-center justify-center text-primary font-bold text-lg">70%</div>
+<div>
+<h4 class="font-bold text-lg mb-2">Strategy</h4>
+<p class="text-body-md text-text-muted">Morbi interdum pellentesque nunc, luctuso pretium nullagoneq luctus at. Aliquam one cursus nunc arcu.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="w-16 h-16 rounded-full border-2 border-primary/20 flex-shrink-0 flex items-center justify-center text-primary font-bold text-lg">98%</div>
+<div>
+<h4 class="font-bold text-lg mb-2">Audience</h4>
+<p class="text-body-md text-text-muted">Morbi interdum pellentesque nunc, luctuso pretium nullagoneq luctus at. Aliquam one cursus nunc arcu.</p>
+</div>
+</div>
+</div>
+<a class="inline-flex items-center gap-2 text-primary font-bold border-b border-primary pb-1 hover:gap-4 transition-all duration-300" href="#">About More <span class="material-symbols-outlined">arrow_forward</span></a>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="py-section-gap bg-surface-container-lowest">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+<span class="text-primary font-label-md uppercase tracking-widest">Services</span>
+<h2 class="text-headline-lg font-bold">Our Services</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="glass-panel p-10 rounded-3xl group transition-all duration-500 hover:-translate-y-2 hover:bg-primary/5">
+<div class="flex justify-between items-start mb-8">
+<div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-4xl">code</span>
+</div>
+<span class="text-headline-md font-bold text-white/5 group-hover:text-primary/10 transition-colors">01</span>
+</div>
+<h3 class="text-headline-md font-bold mb-4 group-hover:text-primary transition-colors">Web Development</h3>
+<p class="text-body-md text-text-muted mb-8 leading-relaxed">
+                        Web development is the process of creating websites and web applications for the internet or intranet.
+                    </p>
+<a class="group/link flex items-center gap-2 text-label-md font-bold" href="#">
+                        Learn More 
+                        <span class="material-symbols-outlined text-[18px] group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<!-- Card 2 -->
+<div class="glass-panel p-10 rounded-3xl group transition-all duration-500 hover:-translate-y-2 hover:bg-primary/5">
+<div class="flex justify-between items-start mb-8">
+<div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-4xl">developer_mode</span>
+</div>
+<span class="text-headline-md font-bold text-white/5 group-hover:text-primary/10 transition-colors">02</span>
+</div>
+<h3 class="text-headline-md font-bold mb-4 group-hover:text-primary transition-colors">Software Development</h3>
+<p class="text-body-md text-text-muted mb-8 leading-relaxed">
+                        Software development is the process of creating computer software programs that perform specific functions.
+                    </p>
+<a class="group/link flex items-center gap-2 text-label-md font-bold" href="#">
+                        Learn More 
+                        <span class="material-symbols-outlined text-[18px] group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<!-- Card 3 -->
+<div class="glass-panel p-10 rounded-3xl group transition-all duration-500 hover:-translate-y-2 hover:bg-primary/5">
+<div class="flex justify-between items-start mb-8">
+<div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-4xl">cloud</span>
+</div>
+<span class="text-headline-md font-bold text-white/5 group-hover:text-primary/10 transition-colors">03</span>
+</div>
+<h3 class="text-headline-md font-bold mb-4 group-hover:text-primary transition-colors">Cloud Solutions</h3>
+<p class="text-body-md text-text-muted mb-8 leading-relaxed">
+                        Cloud solutions refer to the use of cloud computing technology to provide services and solutions over the internet.
+                    </p>
+<a class="group/link flex items-center gap-2 text-label-md font-bold" href="#">
+                        Learn More 
+                        <span class="material-symbols-outlined text-[18px] group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Case Study Section -->
+<section class="py-section-gap">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div class="space-y-4 max-w-xl">
+<span class="text-primary font-label-md uppercase tracking-widest">Case Study</span>
+<h2 class="text-headline-lg font-bold">Real-World Success Stories</h2>
+</div>
+<a class="bg-primary/10 text-primary border border-primary/20 px-8 py-3 rounded-lg font-label-md hover:bg-primary hover:text-on-primary transition-all duration-300" href="#">View All Case</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Case 1 -->
+<div class="group relative overflow-hidden rounded-3xl">
+<div class="aspect-[1.1] relative">
+<img alt="Cloud Hosting architecture" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="/images/cloud-solutions.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent"></div>
+</div>
+<div class="absolute bottom-0 left-0 p-8 space-y-4">
+<span class="text-primary font-label-sm uppercase tracking-wider">Cloud Hosting</span>
+<h3 class="text-headline-md font-bold group-hover:text-primary transition-colors">Unlocking Scalability, Reliability, and Efficiency.</h3>
+<p class="text-body-md text-text-muted max-w-md">Integer purus odio, placerat nec rhoncus in, ullamcorper necbomi doloroei. aptent taciti sociosqu.</p>
+<a class="inline-flex items-center gap-2 text-label-md font-bold" href="#">Learn More <span class="material-symbols-outlined">arrow_forward</span></a>
+</div>
+</div>
+<!-- Case 2 -->
+<div class="group relative overflow-hidden rounded-3xl md:mt-12">
+<div class="aspect-[0.92] relative">
+<img alt="Mobile app development" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="/images/mobile-solutions.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent"></div>
+</div>
+<div class="absolute bottom-0 left-0 p-8 space-y-4">
+<span class="text-primary font-label-sm uppercase tracking-wider">Mobile Development</span>
+<h3 class="text-headline-md font-bold group-hover:text-primary transition-colors">Empowering Businesses through Cutting-Edge Mobile.</h3>
+<p class="text-body-md text-text-muted max-w-md">Integer purus odio, placerat nec rhoncus in, ullamcorper necbomi doloroei. aptent taciti sociosqu.</p>
+<a class="inline-flex items-center gap-2 text-label-md font-bold" href="#">Learn More <span class="material-symbols-outlined">arrow_forward</span></a>
+</div>
+</div>
+<!-- Case 3 -->
+<div class="group relative overflow-hidden rounded-3xl">
+<div class="aspect-[1.04] relative">
+<img alt="IT consulting session" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="/images/ai-solutions.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent"></div>
+</div>
+<div class="absolute bottom-0 left-0 p-8 space-y-4">
+<span class="text-primary font-label-sm uppercase tracking-wider">IT Consulting</span>
+<h3 class="text-headline-md font-bold group-hover:text-primary transition-colors">Empowering Business Performance through Expert.</h3>
+<p class="text-body-md text-text-muted max-w-md">Integer purus odio, placerat nec rhoncus in, ullamcorper necbomi doloroei. aptent taciti sociosqu.</p>
+<a class="inline-flex items-center gap-2 text-label-md font-bold" href="#">Learn More <span class="material-symbols-outlined">arrow_forward</span></a>
+</div>
+</div>
+<!-- Case 4 -->
+<div class="group relative overflow-hidden rounded-3xl md:mt-12">
+<div class="aspect-[1.04] relative">
+<img alt="Enterprise cloud solutions" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="/images/hero-team.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent"></div>
+</div>
+<div class="absolute bottom-0 left-0 p-8 space-y-4">
+<span class="text-primary font-label-sm uppercase tracking-wider">Cloud Hosting</span>
+<h3 class="text-headline-md font-bold group-hover:text-primary transition-colors">Unlocking Scalability, Reliability, and Efficiency.</h3>
+<p class="text-body-md text-text-muted max-w-md">Integer purus odio, placerat nec rhoncus in, ullamcorper necbomi doloroei. aptent taciti sociosqu.</p>
+<a class="inline-flex items-center gap-2 text-label-md font-bold" href="#">Learn More <span class="material-symbols-outlined">arrow_forward</span></a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Partners Slider (Simulation) -->
+<section class="py-20 bg-surface-container-low border-y border-white/5 overflow-hidden">
+<div class="max-w-container-max mx-auto px-gutter flex flex-col items-center gap-12">
+<h5 class="text-label-md text-text-muted uppercase tracking-[4px]">We Worked With Global Largest Brands</h5>
+<div class="flex flex-wrap justify-center gap-12 md:gap-24 opacity-30 grayscale hover:grayscale-0 transition-all">
+<div class="text-2xl font-bold flex items-center gap-2">Logo 01</div>
+<div class="text-2xl font-bold flex items-center gap-2">Logo 02</div>
+<div class="text-2xl font-bold flex items-center gap-2">Logo 03</div>
+<div class="text-2xl font-bold flex items-center gap-2">Logo 04</div>
+<div class="text-2xl font-bold flex items-center gap-2">Logo 05</div>
+<div class="text-2xl font-bold flex items-center gap-2">Logo 06</div>
+</div>
+</div>
+</section>
+<!-- What We Do -->
+<section class="py-section-gap">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+<div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-4">
+<span class="text-primary font-label-md uppercase tracking-widest">What We Do</span>
+<h2 class="text-headline-lg font-bold">Strategic Excellence</h2>
+<p class="text-body-md text-text-muted italic">"Unlock the potential of your Creative business."</p>
+<p class="text-body-md text-text-muted">Morbi interdum pellentesque nunc, luctus pretium nulla luctus at. Aliquam cursus nunc aliquam. Nam semper posuere risus, a gravida sapien tincidunt ac.</p>
+<ul class="space-y-3 pt-4">
+<li class="flex items-center gap-3 text-on-surface font-medium"><span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span> Creative Strategy</li>
+<li class="flex items-center gap-3 text-on-surface font-medium"><span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span> Unique Production</li>
+<li class="flex items-center gap-3 text-on-surface font-medium"><span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span> Rebranding Design</li>
+<li class="flex items-center gap-3 text-on-surface font-medium"><span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span> Corporate Identity</li>
+</ul>
+</div>
+<div class="space-y-6">
+<div class="glass-panel p-6 rounded-2xl">
+<h3 class="text-headline-md font-bold text-primary mb-2">01</h3>
+<h4 class="font-bold text-lg mb-2">Research &amp; Discovery</h4>
+<p class="text-body-md text-text-muted">Web development is the process offer than operdol creating otar eros augue, ultricies sedatoni.</p>
+</div>
+<div class="glass-panel p-6 rounded-2xl">
+<h3 class="text-headline-md font-bold text-primary mb-2">02</h3>
+<h4 class="font-bold text-lg mb-2">Industry Expertise</h4>
+<p class="text-body-md text-text-muted">Web development is the process offer than operdol creating otar eros augue, ultricies sedatoni.</p>
+</div>
+<div class="glass-panel p-6 rounded-2xl">
+<h3 class="text-headline-md font-bold text-primary mb-2">03</h3>
+<h4 class="font-bold text-lg mb-2">Quality Assurance</h4>
+<p class="text-body-md text-text-muted">Web development is the process offer than operdol creating otar eros augue, ultricies sedatoni.</p>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 relative">
+<div class="rounded-[40px] overflow-hidden">
+<img alt="Creative business strategy meeting" class="w-full h-auto rounded-[40px]" src="/images/what-we-do.png"/>
+</div>
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-primary/20 backdrop-blur-xl border border-white/10 rounded-full flex items-center justify-center text-center p-4">
+<p class="text-label-sm font-bold leading-tight">INNOVATIVE SOLUTIONS 2026</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Solutions Grid -->
+<section class="py-section-gap bg-surface-container-lowest">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="text-center mb-16">
+<span class="text-primary font-label-md uppercase tracking-widest">Global Solutions</span>
+<h2 class="text-headline-lg font-bold">Engineered for Performance</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="relative group rounded-3xl overflow-hidden aspect-square border border-white/5">
+<img alt="Cloud Solutions" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="/images/cloud-solutions.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-8 left-8 right-8">
+<h4 class="text-headline-md font-bold mb-2">Web Solutions</h4>
+<p class="text-body-md text-text-muted">Advanced architectural frameworks.</p>
+</div>
+</div>
+<div class="relative group rounded-3xl overflow-hidden aspect-square border border-white/5">
+<img alt="Mobile First" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="/images/mobile-solutions.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-8 left-8 right-8">
+<h4 class="text-headline-md font-bold mb-2">Mobile First</h4>
+<p class="text-body-md text-text-muted">Cross-platform digital excellence.</p>
+</div>
+</div>
+<div class="relative group rounded-3xl overflow-hidden aspect-square border border-white/5">
+<img alt="Cloud Strategy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="/images/ai-solutions.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-8 left-8 right-8">
+<h4 class="text-headline-md font-bold mb-2">Cloud Strategy</h4>
+<p class="text-body-md text-text-muted">Scalable infrastructure as service.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-section-gap relative overflow-hidden">
+<div class="max-w-container-max mx-auto px-gutter relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+<div class="space-y-12">
+<div class="space-y-4">
+<span class="text-primary font-label-md uppercase tracking-widest">Contact</span>
+<h2 class="text-headline-lg font-bold">Let's Build Something Amazing</h2>
+<p class="text-body-lg text-text-muted">We’re happy to answer any questions you may have and help your determine which of our services best fit your needs.</p>
+</div>
+<div class="space-y-8">
+<div class="flex gap-6 items-start">
+<div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined">call</span>
+</div>
+<div>
+<p class="text-label-sm text-text-muted uppercase mb-1">Call Us Now</p>
+<h4 class="text-headline-md font-bold">+880 123 345 6789</h4>
+</div>
+</div>
+<div class="space-y-6 pt-4">
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center text-primary font-bold">01</div>
+<p class="text-body-md text-text-muted">Expert strategic planning for your digital roadmap.</p>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center text-primary font-bold">02</div>
+<p class="text-body-md text-text-muted">Agile development cycles with rapid prototyping.</p>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center text-primary font-bold">03</div>
+<p class="text-body-md text-text-muted">Continuous support and performance monitoring.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="glass-panel p-10 md:p-12 rounded-[40px]">
+<h5 class="text-headline-md font-bold mb-8">Make a Free Consulting</h5>
+<form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-label-sm uppercase tracking-wider text-text-muted">First Name</label>
+<input class="w-full bg-background/50 border-white/10 rounded-xl px-4 py-3 focus:ring-primary focus:border-primary transition-all" placeholder="John" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-label-sm uppercase tracking-wider text-text-muted">Last Name</label>
+<input class="w-full bg-background/50 border-white/10 rounded-xl px-4 py-3 focus:ring-primary focus:border-primary transition-all" placeholder="Doe" type="text"/>
+</div>
+<div class="md:col-span-2 space-y-2">
+<label class="text-label-sm uppercase tracking-wider text-text-muted">Company</label>
+<input class="w-full bg-background/50 border-white/10 rounded-xl px-4 py-3 focus:ring-primary focus:border-primary transition-all" placeholder="Acme Inc" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-label-sm uppercase tracking-wider text-text-muted">Email</label>
+<input class="w-full bg-background/50 border-white/10 rounded-xl px-4 py-3 focus:ring-primary focus:border-primary transition-all" placeholder="john@example.com" type="email"/>
+</div>
+<div class="space-y-2">
+<label class="text-label-sm uppercase tracking-wider text-text-muted">Phone</label>
+<input class="w-full bg-background/50 border-white/10 rounded-xl px-4 py-3 focus:ring-primary focus:border-primary transition-all" placeholder="+1..." type="tel"/>
+</div>
+<div class="md:col-span-2 space-y-2">
+<label class="text-label-sm uppercase tracking-wider text-text-muted">Message</label>
+<textarea class="w-full bg-background/50 border-white/10 rounded-xl px-4 py-3 focus:ring-primary focus:border-primary transition-all" placeholder="How can we help?" rows="4"></textarea>
+</div>
+<div class="md:col-span-2 pt-4">
+<button class="w-full bg-primary text-on-primary font-bold py-4 rounded-xl neon-glow-btn transition-all">Submit Request</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<!-- Background accents -->
+<div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none"></div>
+</section>
+<!-- Footer Section -->
+<footer class="bg-surface-container-lowest pt-section-gap border-t border-white/5">
+<div class="max-w-container-max mx-auto px-gutter grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-20">
+<div class="space-y-8">
+<a class="text-headline-md font-bold text-primary flex items-center gap-2" href="#">
+                    <img src="/logo.svg" alt="Valen Info Logo" class="h-10 w-auto" />
+                </a>
+<p class="text-body-md text-text-muted">
+                    Your premier partner for cutting-edge IT solutions. We transform complex problems into elegant digital realities.
+                </p>
+<div class="space-y-4">
+<p class="text-label-sm text-text-muted uppercase">Call Any Time</p>
+<h4 class="text-headline-md font-bold text-primary">2-965-871-8617</h4>
+</div>
+</div>
+<div class="space-y-8">
+<h4 class="text-label-md font-bold uppercase tracking-widest text-on-surface">Our Solutions</h4>
+<ul class="space-y-4">
+<li><a class="text-text-muted hover:text-primary transition-colors" href="#">Web Development</a></li>
+<li><a class="text-text-muted hover:text-primary transition-colors" href="#">Mobile Development</a></li>
+<li><a class="text-text-muted hover:text-primary transition-colors" href="#">Cloud Services</a></li>
+<li><a class="text-text-muted hover:text-primary transition-colors" href="#">Network Connectivity</a></li>
+<li><a class="text-text-muted hover:text-primary transition-colors" href="#">Data analytics</a></li>
+<li><a class="text-text-muted hover:text-primary transition-colors" href="#">Software Development</a></li>
+</ul>
+</div>
+<div class="space-y-8">
+<h4 class="text-label-md font-bold uppercase tracking-widest text-on-surface">Company</h4>
+<ul class="space-y-4">
+<li><a class="text-text-muted hover:text-primary transition-colors" href="#">About Us</a></li>
+<li><a class="text-text-muted hover:text-primary transition-colors" href="#">Case Study</a></li>
+<li><a class="text-text-muted hover:text-primary transition-colors" href="#">News &amp; Article</a></li>
+<li><a class="text-text-muted hover:text-primary transition-colors" href="#">Our Team</a></li>
+<li><a class="text-text-muted hover:text-primary transition-colors" href="#">All Portfolio</a></li>
+<li><a class="text-text-muted hover:text-primary transition-colors" href="#">Pricing Plan</a></li>
+</ul>
+</div>
+<div class="space-y-8">
+<h4 class="text-label-md font-bold uppercase tracking-widest text-on-surface">Say Hello</h4>
+<div class="space-y-6">
+<div>
+<p class="text-label-sm text-text-muted mb-1">Office Location</p>
+<p class="text-body-md text-on-surface">House 168/170, Avenue 01, Mirpur DOHS, Dhaka Bangladesh</p>
+</div>
+<div>
+<p class="text-label-sm text-text-muted mb-1">Email Support</p>
+<p class="text-body-md text-on-surface">info@valen.info</p>
+</div>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all" href="#"><span class="material-symbols-outlined text-[18px]">share</span></a>
+<a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all" href="#"><span class="material-symbols-outlined text-[18px]">favorite</span></a>
+<a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all" href="#"><span class="material-symbols-outlined text-[18px]">public</span></a>
+</div>
+</div>
+</div>
+</div>
+<div class="border-t border-white/5 py-8">
+<div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-label-sm text-text-muted">© Copyright 2026 Valen Info | All Rights Reserved</p>
+<div class="flex gap-8 text-label-sm">
+<a class="text-text-muted hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-text-muted hover:text-primary transition-colors" href="#">Terms &amp; Conditions</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Scroll Reveal Interaction
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach((el) => observer.observe(el));
+        
+        // Navigation transparency on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-background/95', 'shadow-lg');
+                nav.classList.remove('bg-background/80');
+            } else {
+                nav.classList.remove('bg-background/95', 'shadow-lg');
+                nav.classList.add('bg-background/80');
+            }
+        });
+    </script>
+</body></html>
