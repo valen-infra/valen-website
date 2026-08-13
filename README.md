@@ -15,7 +15,7 @@ First, run the development server:
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the website.
+Open [http://localhost:7878](http://localhost:7878) with your browser to see the website.
 
 ## Scripts
 - `npm run dev`: Starts the Next.js development server.
