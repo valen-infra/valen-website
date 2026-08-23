@@ -50,35 +50,28 @@ export default function Header() {
         <div className="max-w-container-max mx-auto h-full flex justify-between items-center">
           <Logo size="md" href="#" />
           <div className="hidden md:flex gap-8 items-center">
-            <a className="text-primary font-bold border-b-2 border-primary pb-1 font-label-md" href="#">
+            <a className="text-white font-bold border-b-2 border-white pb-1 font-label-md" href="#">
               Home
             </a>
-            <a className="text-on-surface/80 font-medium hover:text-primary transition-colors font-label-md" href="#">
-              About
+            <a className="text-on-surface/80 font-medium hover:text-white transition-colors font-label-md" href="#the-problem">
+              The Roadblocks
             </a>
-            <div className="group relative">
-              <button className="flex items-center gap-1 text-on-surface/80 font-medium group-hover:text-primary transition-colors font-label-md">
-                Service <span className="material-symbols-outlined text-sm">expand_more</span>
-              </button>
-            </div>
-            <div className="group relative">
-              <button className="flex items-center gap-1 text-on-surface/80 font-medium group-hover:text-primary transition-colors font-label-md">
-                Project <span className="material-symbols-outlined text-sm">expand_more</span>
-              </button>
-            </div>
-            <a className="text-on-surface/80 font-medium hover:text-primary transition-colors font-label-md" href="#">
-              Pages
+            <a className="text-on-surface/80 font-medium hover:text-white transition-colors font-label-md" href="#services">
+              Our Solutions
             </a>
-            <a className="text-on-surface/80 font-medium hover:text-primary transition-colors font-label-md" href="#">
-              Blog
+            <a className="text-on-surface/80 font-medium hover:text-white transition-colors font-label-md" href="#cases">
+              Case Studies
+            </a>
+            <a className="text-on-surface/80 font-medium hover:text-white transition-colors font-label-md" href="#contact">
+              Contact
             </a>
           </div>
           <div className="flex items-center gap-4">
             <a
-              className="hidden lg:block bg-primary text-on-primary px-6 py-2.5 rounded font-label-md neon-glow-btn transition-all duration-300"
-              href="#"
+              className="hidden lg:block bg-white text-black font-bold px-6 py-2.5 rounded font-label-md neon-glow-btn transition-all duration-300"
+              href="#contact"
             >
-              Get A Quote
+              Get Solution Audit
             </a>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -101,30 +94,27 @@ export default function Header() {
               </button>
             </div>
             <div className="flex flex-col gap-6 text-lg font-medium">
-              <a onClick={() => setIsMobileMenuOpen(false)} className="text-primary" href="#">
+              <a onClick={() => setIsMobileMenuOpen(false)} className="text-white" href="#">
                 Home
               </a>
-              <a onClick={() => setIsMobileMenuOpen(false)} className="text-on-surface/80 hover:text-primary" href="#">
-                About
+              <a onClick={() => setIsMobileMenuOpen(false)} className="text-on-surface/80 hover:text-white" href="#the-problem">
+                The Roadblocks
               </a>
-              <a onClick={() => setIsMobileMenuOpen(false)} className="text-on-surface/80 hover:text-primary" href="#">
-                Service
+              <a onClick={() => setIsMobileMenuOpen(false)} className="text-on-surface/80 hover:text-white" href="#services">
+                Our Solutions
               </a>
-              <a onClick={() => setIsMobileMenuOpen(false)} className="text-on-surface/80 hover:text-primary" href="#">
-                Project
+              <a onClick={() => setIsMobileMenuOpen(false)} className="text-on-surface/80 hover:text-white" href="#cases">
+                Case Studies
               </a>
-              <a onClick={() => setIsMobileMenuOpen(false)} className="text-on-surface/80 hover:text-primary" href="#">
-                Pages
-              </a>
-              <a onClick={() => setIsMobileMenuOpen(false)} className="text-on-surface/80 hover:text-primary" href="#">
-                Blog
+              <a onClick={() => setIsMobileMenuOpen(false)} className="text-on-surface/80 hover:text-white" href="#contact">
+                Contact
               </a>
               <a
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="bg-primary text-on-primary text-center px-6 py-3 rounded font-label-md neon-glow-btn transition-all mt-6"
-                href="#"
+                className="bg-white text-black font-bold text-center px-6 py-3 rounded font-label-md neon-glow-btn transition-all mt-6"
+                href="#contact"
               >
-                Get A Quote
+                Get Solution Audit
               </a>
             </div>
           </div>

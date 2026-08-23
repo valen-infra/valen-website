@@ -2,99 +2,162 @@
 
 import { useState } from "react";
 import Logo from "@/components/ui/Logo";
+import { CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 
 const services = [
   {
-    icon: "developer_mode",
-    title: "Web Development",
+    icon: "code",
+    title: "Full-Stack SaaS & Web",
     description:
-      "Building robust, scalable, and high-performance web applications using cutting-edge frameworks.",
+      "Transform stalled MVPs and outdated code into fast, scalable Next.js and TypeScript apps.",
   },
   {
-    icon: "settings_input_component",
-    title: "Software Systems",
+    icon: "psychology",
+    title: "AI Integration & Automation",
     description:
-      "Custom enterprise software designed to streamline operations and drive business efficiency.",
+      "Embed custom LLMs and automated workflows to cut costs and automate operations.",
   },
   {
-    icon: "cloud",
-    title: "Cloud Solutions",
+    icon: "cloud_sync",
+    title: "Cloud & DevOps Scale",
     description:
-      "Seamless cloud migration, management, and optimization for maximum security and scalability.",
+      "Cut cloud bills by up to 60% with resilient serverless and 99.99% guaranteed uptime.",
   },
 ];
 
 const caseStudies = [
   {
-    title: "FinTech Evolution",
+    title: "SaaS Scale: 64% Server Cost Cut",
+    category: "Cloud Migration & Cost Optimization",
+    metric: "64% Cost Cut",
     description:
-      "Re-architecting a legacy banking system for 10x scalability and enhanced security.",
-    img: "/images/cloud-solutions.png",
+      "Migrated monolithic architecture into serverless microservices with 99.99% uptime and sub-45ms latency.",
+    img: "/images/Cloud Migration & Cost Optimization Card.png",
   },
   {
-    title: "Global Logistics AI",
+    title: "E-Commerce: 3.8x Mobile Conversion",
+    category: "Full-Stack Web & Mobile App",
+    metric: "3.8x Conversion Jump",
     description:
-      "Implementing AI-driven route optimization reducing fuel costs by 30% for global shipping leader.",
-    img: "/images/mobile-solutions.png",
+      "Fixed slow checkout and drop-offs with high-speed frictionless mobile PWA loaded in under 0.8s.",
+    img: "/images/E-Commerce Replatforming & Mobile PWA Card.png",
+  },
+  {
+    title: "FinTech: 15,000 Hours Saved Yearly",
+    category: "AI Workflow Automation",
+    metric: "15,000h Saved / Year",
+    description:
+      "Automated manual verification pipelines with 99.4% accuracy using custom AI & LLM workflows.",
+    img: "/images/FinTech AI Engine & Workflow Automation Card.png",
+  },
+  {
+    title: "Healthcare Portal: Zero Downtime",
+    category: "Legacy Modernization",
+    metric: "0s Downtime / HIPAA",
+    description:
+      "Refactored 10-year legacy EHR database into a HIPAA-compliant modern Next.js ecosystem without outages.",
+    img: "/images/Healthcare Portal Zero-Downtime Modernization Card.png",
   },
 ];
 
 const processSteps = [
   {
-    step: "1",
-    title: "Research & Discovery",
-    description: "In-depth analysis of your business landscape to identify unique opportunities.",
+    step: "01",
+    title: "Diagnose & Unblock",
+    description: "Deep audit of your codebase, UX friction, and bottlenecks to craft an immediate fix.",
   },
   {
-    step: "2",
-    title: "Industry Expertise",
-    description: "Leveraging decades of cross-vertical experience to solve complex challenges.",
+    step: "02",
+    title: "Execute With Velocity",
+    description: "Senior engineering team refactors and deploys clean code in rapid sprint cycles.",
   },
   {
-    step: "3",
-    title: "Quality Assurance",
-    description: "Rigorous testing protocols ensuring flawless performance at scale.",
+    step: "03",
+    title: "Scale & Automate",
+    description: "Deploy automated CI/CD and AI infrastructure built for seamless high-traffic growth.",
   },
 ];
 
 const solutions = [
   {
-    title: "Web Solutions",
-    subtitle: "Enterprise Web Infrastructure",
+    title: "Next-Gen Web & SaaS",
+    subtitle: "Built for speed & conversions",
     img: "/images/cloud-solutions.png",
   },
   {
-    title: "Mobile First",
-    subtitle: "Native & Hybrid Experiences",
+    title: "Mobile & Apps",
+    subtitle: "Cross-platform fluid experiences",
     img: "/images/mobile-solutions.png",
   },
   {
-    title: "Cloud Strategy",
-    subtitle: "Infrastructure Modernization",
+    title: "AI & Cloud Scale",
+    subtitle: "Automated fault-tolerant infrastructure",
     img: "/images/ai-solutions.png",
   },
 ];
 
 const navLinks = [
-  { href: "#solutions", icon: "settings_input_component", label: "Solutions" },
+  { href: "#the-problem", icon: "warning", label: "The Roadblocks" },
+  { href: "#services", icon: "code", label: "Our Solutions" },
   { href: "#case-studies", icon: "rocket_launch", label: "Case Studies" },
-  { href: "#services", icon: "developer_mode", label: "Services" },
-  { href: "#about", icon: "info", label: "About" },
-  { href: "#contact", icon: "mail", label: "Contact" },
+  { href: "#about", icon: "schema", label: "Blueprint" },
+  { href: "#contact", icon: "mail", label: "Get Solution Audit" },
 ];
 
 export default function MobileHome() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    serviceType: "Website",
+    goal: "",
+  });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const closeDrawer = () => setDrawerOpen(false);
 
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.phone) return;
+
+    setStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw new Error(result.error || "Failed to send request.");
+      }
+
+      setStatus("success");
+      setFormData({
+        name: "",
+        phone: "",
+        serviceType: "Website",
+        goal: "",
+      });
+    } catch (err: unknown) {
+      console.error(err);
+      setStatus("error");
+      setErrorMessage(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    }
+  };
+
   return (
-    <div className="md:hidden bg-background text-on-surface font-body-md selection:bg-primary selection:text-on-primary">
+    <div className="md:hidden bg-background text-on-surface font-body-md selection:bg-white/20 selection:text-white">
       {/* Top App Bar */}
-      <header className="fixed top-0 w-full z-50 bg-surface-glass backdrop-blur-xl border-b border-white/5 shadow-[0_0_20px_rgba(0,208,148,0.15)] flex justify-between items-center px-margin-mobile py-4">
-        <div className="flex items-center gap-2">
+      <header className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-margin-mobile py-4">
+        <div className="flex items-center gap-3">
           <button
-            className="active:scale-95 duration-200 text-primary"
+            className="active:scale-95 duration-200 text-white"
             onClick={() => setDrawerOpen(true)}
             aria-label="Open menu"
           >
@@ -102,14 +165,17 @@ export default function MobileHome() {
           </button>
           <Logo size="sm" href="#" />
         </div>
-        <button className="active:scale-95 duration-200 text-primary" aria-label="Account">
-          <span className="material-symbols-outlined">account_circle</span>
-        </button>
+        <a
+          href="#contact"
+          className="bg-white text-black font-bold text-xs px-3 py-1.5 rounded-md active:scale-95 transition-transform"
+        >
+          Audit Call
+        </a>
       </header>
 
       {/* Drawer */}
       <div
-        className={`h-full w-4/5 fixed left-0 top-0 z-[60] bg-surface-container-high border-r border-white/5 shadow-2xl flex flex-col p-stack-lg gap-stack-md transition-transform duration-300 ease-in-out ${
+        className={`h-full w-4/5 fixed left-0 top-0 z-[60] bg-[#0c0c0c] border-r border-white/10 shadow-2xl flex flex-col p-stack-lg gap-stack-md transition-transform duration-300 ease-in-out ${
           drawerOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -127,8 +193,8 @@ export default function MobileHome() {
               onClick={closeDrawer}
               className={
                 idx === 0
-                  ? "bg-primary/10 text-primary font-bold rounded-lg p-3 flex items-center gap-3"
-                  : "text-on-surface-variant hover:bg-surface-variant p-3 rounded-lg flex items-center gap-3 transition-all"
+                  ? "bg-white/10 text-white font-bold rounded-lg p-3 flex items-center gap-3"
+                  : "text-text-muted hover:bg-white/5 p-3 rounded-lg flex items-center gap-3 transition-all"
               }
             >
               <span className="material-symbols-outlined">{link.icon}</span> {link.label}
@@ -137,7 +203,7 @@ export default function MobileHome() {
         </nav>
       </div>
       <div
-        className={`fixed inset-0 bg-black/60 z-[55] backdrop-blur-sm ${drawerOpen ? "" : "hidden"}`}
+        className={`fixed inset-0 bg-black/70 z-[55] backdrop-blur-sm ${drawerOpen ? "" : "hidden"}`}
         onClick={closeDrawer}
       />
 
@@ -145,47 +211,95 @@ export default function MobileHome() {
         {/* Hero */}
         <section className="px-margin-mobile py-stack-lg relative">
           <div className="flex flex-col gap-stack-md text-center">
-            <span className="inline-block self-center px-4 py-1 rounded-full bg-primary/15 text-primary text-label-md font-label-md uppercase tracking-widest border border-primary/20">
-              Next-Gen Solutions
+            <span className="inline-block self-center px-4 py-1 rounded-full bg-white/10 text-white text-label-sm font-label-md uppercase tracking-widest border border-white/20">
+              High-Tech Solution Partner
             </span>
-            <h1 className="font-display-lg-mobile text-display-lg-mobile text-on-surface leading-tight">
-              Set Your Business <span className="text-primary">New Ideas</span>
+            <h1 className="font-display-lg-mobile text-display-lg-mobile text-white leading-tight">
+              You Started With A Vision. <br />
+              <span className="text-slate-300">We Solve What Holds You Back.</span>
             </h1>
-            <p className="text-text-muted font-body-md text-body-md">
-              Empowering enterprise innovation with bespoke software, cloud architecture, and strategic digital
-              transformation.
+            <p className="text-text-muted font-body-md">
+              Don&apos;t let slow development, legacy tech debt, or bad UX stall your growth. We engineer high-performance software and AI cloud architecture to get you scaling fast.
             </p>
             <div className="flex flex-col gap-3 mt-4">
-              <button className="bg-primary text-on-primary font-label-md text-label-md py-4 px-8 rounded-lg font-bold shadow-lg shadow-primary/20 active:scale-95 transition-transform">
-                Start Your Project
-              </button>
-              <button className="border border-primary text-primary font-label-md text-label-md py-4 px-8 rounded-lg font-bold hover:bg-primary/5 active:scale-95 transition-transform">
-                View Our Portfolio
-              </button>
+              <a
+                href="#contact"
+                className="bg-white text-black font-label-md py-4 px-8 rounded-lg font-bold shadow-lg shadow-white/10 active:scale-95 transition-transform text-center"
+              >
+                Claim Free Solution Audit
+              </a>
+              <a
+                href="#the-problem"
+                className="border border-white/20 text-white font-label-md py-4 px-8 rounded-lg font-bold hover:bg-white/5 active:scale-95 transition-transform text-center"
+              >
+                See How We Solve It
+              </a>
             </div>
           </div>
           <div className="mt-stack-lg relative">
-            <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/20 blur-[80px] rounded-full"></div>
             <img
               alt="Valen Info Hero visual"
-              className="w-full h-auto rounded-xl relative z-10 glass-card"
+              className="w-full h-auto rounded-2xl relative z-10 glass-card border border-white/10"
               src="/images/hero-team.png"
             />
           </div>
         </section>
 
+        {/* The Roadblocks vs Desired Solution */}
+        <section id="the-problem" className="px-margin-mobile py-16 bg-surface-container-low">
+          <div className="flex flex-col gap-2 mb-8 text-center">
+            <span className="text-xs uppercase tracking-widest text-text-muted">The Problem</span>
+            <h2 className="font-headline-md text-headline-md text-white">Where You&apos;re Stuck Now</h2>
+          </div>
+          <div className="flex flex-col gap-4">
+            <div className="glass-card p-6 rounded-2xl border border-red-500/20 bg-red-950/10 space-y-4">
+              <div className="flex items-center gap-2 text-red-400 font-bold text-sm uppercase">
+                <span className="material-symbols-outlined text-lg">error</span> The Roadblocks
+              </div>
+              <ul className="space-y-3 text-sm text-text-muted">
+                <li className="flex items-start gap-2">
+                  <span className="text-red-400">✕</span> Sluggish sprint delivery &amp; missed deadlines
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-red-400">✕</span> Clunky UX causing user drop-off &amp; churn
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-red-400">✕</span> Fragile legacy code &amp; expensive server bills
+                </li>
+              </ul>
+            </div>
+
+            <div className="glass-card p-6 rounded-2xl border border-white/20 bg-white/5 space-y-4">
+              <div className="flex items-center gap-2 text-white font-bold text-sm uppercase">
+                <span className="material-symbols-outlined text-lg">check_circle</span> The Valen Info Solution
+              </div>
+              <ul className="space-y-3 text-sm text-text-muted">
+                <li className="flex items-start gap-2">
+                  <span className="text-white">✓</span> Rapid sprint velocity with production-ready code
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-white">✓</span> Frictionless, high-converting modern UI/UX
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-white">✓</span> 99.99% uptime with auto-scaling AI &amp; cloud systems
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         {/* Stats */}
-        <section className="px-margin-mobile py-stack-lg bg-surface-container-low">
+        <section className="px-margin-mobile py-stack-lg bg-surface-container-lowest">
           <div className="grid grid-cols-2 gap-4">
             {[
-              { value: "5+", label: "Years Excellence" },
-              { value: "1.5k", label: "Global Clients" },
-              { value: "350+", label: "Success Stories" },
-              { value: "98%", label: "Client Retention" },
+              { value: "4.2x", label: "Faster Releases" },
+              { value: "99.99%", label: "Uptime SLA" },
+              { value: "60%", label: "Cloud Cost Cut" },
+              { value: "150+", label: "Wins Delivered" },
             ].map((stat) => (
-              <div key={stat.label} className="glass-card p-6 rounded-xl flex flex-col items-center text-center">
-                <span className="text-primary font-headline-md text-headline-md">{stat.value}</span>
-                <span className="text-text-muted text-label-sm font-label-sm uppercase">{stat.label}</span>
+              <div key={stat.label} className="glass-card p-6 rounded-xl flex flex-col items-center text-center border border-white/10">
+                <span className="text-white font-headline-md text-headline-md font-bold">{stat.value}</span>
+                <span className="text-text-muted text-label-sm font-label-sm uppercase mt-1">{stat.label}</span>
               </div>
             ))}
           </div>
@@ -194,19 +308,19 @@ export default function MobileHome() {
         {/* Services */}
         <section id="services" className="px-margin-mobile py-20">
           <div className="flex flex-col gap-2 mb-10 text-center">
-            <h2 className="font-headline-md text-headline-md text-primary">Core Expertise</h2>
-            <p className="text-text-muted">Tailored solutions for the modern digital era.</p>
+            <span className="text-xs uppercase tracking-widest text-text-muted">Our Solutions</span>
+            <h2 className="font-headline-md text-headline-md text-white">We Solve The Bottlenecks</h2>
           </div>
           <div className="flex flex-col gap-6">
             {services.map((service) => (
-              <div key={service.title} className="glass-card neon-border-top p-stack-lg rounded-xl flex flex-col gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <span className="material-symbols-outlined text-primary">{service.icon}</span>
+              <div key={service.title} className="glass-card neon-border-top p-stack-lg rounded-2xl flex flex-col gap-4 border border-white/10">
+                <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center">
+                  <span className="material-symbols-outlined text-white">{service.icon}</span>
                 </div>
-                <h3 className="font-headline-md text-[20px]">{service.title}</h3>
+                <h3 className="font-headline-md text-[20px] text-white">{service.title}</h3>
                 <p className="text-text-muted font-body-md">{service.description}</p>
-                <a className="text-primary font-label-md flex items-center gap-2 group" href="#">
-                  Learn More{" "}
+                <a className="text-white font-label-md flex items-center gap-2 group font-bold" href="#contact">
+                  Solve This Problem{" "}
                   <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">
                     arrow_forward
                   </span>
@@ -219,50 +333,63 @@ export default function MobileHome() {
         {/* Case Studies */}
         <section id="case-studies" className="px-margin-mobile py-20 bg-surface-container-lowest">
           <div className="flex flex-col gap-2 mb-10">
-            <span className="text-primary font-label-md uppercase tracking-wider">Success Stories</span>
-            <h2 className="font-headline-md text-headline-md text-on-surface">Delivering Excellence</h2>
+            <span className="text-white/80 font-label-md uppercase tracking-wider">Proven Results</span>
+            <h2 className="font-headline-md text-headline-md text-white">Real Client Success Stories</h2>
           </div>
           <div className="flex flex-col gap-stack-lg">
             {caseStudies.map((item) => (
-              <div key={item.title} className="group">
-                <div className="relative overflow-hidden rounded-xl mb-4 aspect-[4/3]">
+              <div key={item.title} className="group border border-white/10 rounded-2xl p-5 bg-white/5 space-y-3">
+                <div className="relative overflow-hidden rounded-xl aspect-[4/3] border border-white/10">
                   <img alt={item.title} className="w-full h-full object-cover" src={item.img} />
+                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold bg-black/70 backdrop-blur-md border border-white/20 text-white">
+                    ★ {item.metric}
+                  </div>
                 </div>
-                <h3 className="font-headline-md text-[22px] mb-2">{item.title}</h3>
-                <p className="text-text-muted font-body-md mb-4">{item.description}</p>
-                <button className="text-primary font-label-md underline underline-offset-4">Read Case Study</button>
+                <div>
+                  <span className="text-[11px] uppercase tracking-wider text-white/60 font-semibold">{item.category}</span>
+                  <h3 className="font-headline-md text-lg text-white font-bold mt-0.5">{item.title}</h3>
+                </div>
+                <p className="text-text-muted font-body-md text-sm leading-relaxed">{item.description}</p>
+                <a href="#contact" className="inline-flex items-center gap-1.5 text-white font-label-md text-sm font-bold pt-1">
+                  Get Similar Results <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
               </div>
             ))}
           </div>
         </section>
 
-        {/* What We Do */}
+        {/* 3-Step Process */}
         <section id="about" className="px-margin-mobile py-20">
           <div className="flex flex-col gap-stack-md">
-            <div className="mb-10">
-              <img
-                alt="Strategic Process"
-                className="w-full h-auto rounded-2xl glass-card"
-                src="/images/what-we-do.png"
-              />
+            <div className="mb-6 rounded-2xl overflow-hidden border border-white/10 glass-card aspect-square">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                className="w-full h-full object-cover rounded-2xl"
+              >
+                <source src="/video/Modern_tech_startup_war_room_a.mp4" type="video/mp4" />
+              </video>
             </div>
             <div className="flex flex-col gap-8">
               <div>
-                <h2 className="font-display-lg-mobile text-headline-md mb-4">
-                  Strategic <span className="text-primary">Excellence</span>
+                <h2 className="font-display-lg-mobile text-headline-md mb-4 text-white">
+                  The 3-Step <span className="text-slate-300">Transformation</span>
                 </h2>
                 <p className="text-text-muted mb-8">
-                  Our approach combines technical rigor with business acumen to deliver transformative results.
+                  How we diagnose, refactor, and scale your technology into a high-growth market leader.
                 </p>
               </div>
               {processSteps.map((step) => (
-                <div key={step.step} className="flex gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center text-primary font-bold">
+                <div key={step.step} className="flex gap-4 glass-card p-4 rounded-xl border border-white/10">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center text-white font-bold">
                     {step.step}
                   </div>
                   <div>
-                    <h4 className="font-headline-md text-[18px] mb-1">{step.title}</h4>
-                    <p className="text-text-muted text-body-md">{step.description}</p>
+                    <h4 className="font-headline-md text-[18px] mb-1 text-white">{step.title}</h4>
+                    <p className="text-text-muted text-body-md text-sm">{step.description}</p>
                   </div>
                 </div>
               ))}
@@ -270,84 +397,101 @@ export default function MobileHome() {
           </div>
         </section>
 
-        {/* Solutions */}
-        <section id="solutions" className="px-margin-mobile py-20 bg-surface-container">
-          <h2 className="font-headline-md text-headline-md text-center mb-10">Scalable Solutions</h2>
-          <div className="grid grid-cols-1 gap-4">
-            {solutions.map((item) => (
-              <div key={item.title} className="relative h-64 rounded-2xl overflow-hidden glass-card group">
-                <img
-                  alt={item.title}
-                  className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-700"
-                  src={item.img}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
-                <div className="absolute bottom-6 left-6">
-                  <h4 className="font-headline-md text-[20px] text-primary">{item.title}</h4>
-                  <p className="text-on-surface-variant text-label-sm">{item.subtitle}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Contact */}
+        {/* Contact Form */}
         <section id="contact" className="px-margin-mobile py-20">
-          <div className="glass-card p-stack-lg rounded-3xl neon-shadow">
-            <h2 className="font-headline-md text-headline-md mb-4">Free Consulting</h2>
-            <p className="text-text-muted mb-8">
-              Discuss your vision with our senior architects and get a strategic roadmap.
+          <div className="glass-card p-stack-lg rounded-3xl neon-shadow border border-white/10">
+            <span className="text-xs uppercase tracking-widest text-text-muted">Take Action</span>
+            <h2 className="font-headline-md text-headline-md mb-2 text-white">Claim Free Solution Audit</h2>
+            <p className="text-text-muted mb-6 text-sm">
+              Speak with our senior software architects. We will diagnose your technical roadblocks and provide an actionable scaling roadmap.
             </p>
-            <form
-              className="flex flex-col gap-4"
-              onSubmit={(e) => {
-                e.preventDefault();
-              }}
-            >
-              <input
-                className="w-full bg-surface border border-white/10 rounded-lg p-4 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
-                placeholder="Full Name"
-                type="text"
-              />
-              <input
-                className="w-full bg-surface border border-white/10 rounded-lg p-4 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
-                placeholder="Work Email"
-                type="email"
-              />
-              <select className="w-full bg-surface border border-white/10 rounded-lg p-4 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
-                <option>Web Development</option>
-                <option>Cloud Architecture</option>
-                <option>AI Solutions</option>
-              </select>
-              <textarea
-                className="w-full bg-surface border border-white/10 rounded-lg p-4 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
-                placeholder="Tell us about your project..."
-                rows={4}
-              ></textarea>
-              <button
-                className="w-full bg-primary text-on-primary font-bold py-4 rounded-lg shadow-xl shadow-primary/20 active:scale-95 transition-transform mt-4"
-                type="submit"
-              >
-                Request Strategy Session
-              </button>
-            </form>
-            <div className="mt-12 flex flex-col gap-6">
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                  <span className="material-symbols-outlined">call</span>
+            {status === "success" ? (
+              <div className="p-6 rounded-2xl bg-white/5 border border-emerald-500/30 text-center space-y-3 animate-fade-in">
+                <div className="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mx-auto">
+                  <CheckCircle2 className="w-6 h-6" />
                 </div>
-                <div>
-                  <p className="text-label-sm text-text-muted">Call Us</p>
-                  <p className="font-headline-md text-[16px]">+1 (234) 567-8900</p>
-                </div>
+                <h4 className="text-lg font-bold text-white">Roadmap Request Received!</h4>
+                <p className="text-text-muted text-xs leading-relaxed">
+                  Thank you! Our engineering team has received your information and will review your project within 24 hours.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setStatus("idle")}
+                  className="px-4 py-2 text-xs font-semibold bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors cursor-pointer"
+                >
+                  Send another message
+                </button>
               </div>
+            ) : (
+              <form
+                className="flex flex-col gap-4"
+                onSubmit={handleFormSubmit}
+              >
+                {status === "error" && (
+                  <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 flex items-start gap-2 text-red-400 text-xs">
+                    <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                    <span>{errorMessage || "Failed to submit request. Please try again."}</span>
+                  </div>
+                )}
+                <input
+                  className="w-full bg-surface border border-white/10 rounded-lg p-4 text-on-surface focus:border-white focus:ring-1 focus:ring-white outline-none transition-all"
+                  placeholder="Your Name"
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  required
+                />
+                <input
+                  className="w-full bg-surface border border-white/10 rounded-lg p-4 text-on-surface focus:border-white focus:ring-1 focus:ring-white outline-none transition-all"
+                  placeholder="Phone Number"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  required
+                />
+                <select
+                  className="w-full bg-[#111] border border-white/10 rounded-lg p-4 text-on-surface focus:border-white focus:ring-1 focus:ring-white outline-none transition-all"
+                  value={formData.serviceType}
+                  onChange={(e) => setFormData({ ...formData, serviceType: e.target.value })}
+                >
+                  <option value="Website">Website</option>
+                  <option value="App">App</option>
+                </select>
+                <textarea
+                  className="w-full bg-surface border border-white/10 rounded-lg p-4 text-on-surface focus:border-white focus:ring-1 focus:ring-white outline-none transition-all resize-none"
+                  placeholder="What is your primary goal / timeline?"
+                  rows={3}
+                  value={formData.goal}
+                  onChange={(e) => setFormData({ ...formData, goal: e.target.value })}
+                ></textarea>
+                <button
+                  className="w-full bg-white text-black font-bold py-4 rounded-lg neon-glow-btn active:scale-95 transition-transform mt-2 cursor-pointer flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                  type="submit"
+                  disabled={status === "loading"}
+                >
+                  {status === "loading" ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <span>Sending Request...</span>
+                    </>
+                  ) : (
+                    "Claim Free 30-Min Roadmap Call"
+                  )}
+                </button>
+                <p className="text-center text-xs text-text-muted mt-1">
+                  🔒 100% confidential. Strict NDA guaranteed.
+                </p>
+              </form>
+            )}
+
+            <div className="mt-8 flex flex-col gap-4 pt-6 border-t border-white/10">
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white">
                   <span className="material-symbols-outlined">mail</span>
                 </div>
                 <div>
-                  <p className="text-label-sm text-text-muted">Email Us</p>
-                  <p className="font-headline-md text-[16px]">hello@technova.io</p>
+                  <p className="text-label-sm text-text-muted">Client Inquiries</p>
+                  <p className="font-headline-md text-[15px] text-white">contact@valen.info</p>
                 </div>
               </div>
             </div>
@@ -357,21 +501,21 @@ export default function MobileHome() {
 
       {/* Footer */}
       <footer className="w-full mb-16 border-t border-white/5 bg-surface-container-lowest flex flex-col items-center text-center p-stack-lg gap-stack-md">
-        <Logo size="md" href="#" />
+        <Logo variant="stacked" size="md" href="#" />
         <p className="text-text-muted font-body-md max-w-xs">
-          © 2026 Valen Info. Built for the future of high-tech enterprise software &amp; digital solutions.
+          © 2026 Valen Info. High-tech enterprise software, AI systems, and digital solutions.
         </p>
         <div className="flex flex-wrap justify-center gap-4 mt-2">
-          <a className="text-text-muted hover:text-primary transition-colors text-label-md" href="#">
+          <a className="text-text-muted hover:text-white transition-colors text-label-md" href="#">
             Privacy
           </a>
-          <a className="text-text-muted hover:text-primary transition-colors text-label-md" href="#">
+          <a className="text-text-muted hover:text-white transition-colors text-label-md" href="#">
             Terms
           </a>
-          <a className="text-text-muted hover:text-primary transition-colors text-label-md" href="#">
+          <a className="text-text-muted hover:text-white transition-colors text-label-md" href="#">
             LinkedIn
           </a>
-          <a className="text-text-muted hover:text-primary transition-colors text-label-md" href="#">
+          <a className="text-text-muted hover:text-white transition-colors text-label-md" href="#">
             GitHub
           </a>
         </div>

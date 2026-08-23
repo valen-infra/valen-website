@@ -5,38 +5,40 @@ export default function Hero() {
     <section className="relative pt-32 pb-20 md:pt-52 md:pb-32 overflow-hidden">
       <div className="max-w-container-max mx-auto px-gutter grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
         <div className="space-y-8 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-md">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-on-surface font-label-md">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-            Innovative Digital Agency
+            High-Tech Growth &amp; Engineering Partner
           </div>
-          <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg leading-tight">
-            Set Your <span className="text-primary">Business</span> <br /> New Ideas.
+          <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg leading-tight text-white">
+            You Started With A Vision. <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">
+              We Solve What Holds You Back.
+            </span>
           </h1>
           <p className="text-body-lg text-text-muted leading-relaxed">
-            Curabitur sed facilisis erat. Vestibulum pharetra eros eget fringilla porttitor. oltorrent gongi Duis a
-            orci nunc. Suspendisse ac convallis sapien, quis commodo libero. Donec nec duomoi luctus.
+            You launched your business with big goals, but slow dev cycles, fragile tech debt, and clunky user experiences are stalling your revenue. <strong className="text-white">Valen Info</strong> provides the end-to-end engineering, AI automation, and cloud architecture to get you unstuck and scaling fast.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 pt-4">
             <a
-              className="bg-primary text-on-primary px-8 py-4 rounded-lg font-label-md text-center neon-glow-btn transition-all"
-              href="#"
+              className="bg-white text-black px-8 py-4 rounded-lg font-label-md font-bold text-center neon-glow-btn transition-all"
+              href="#contact"
             >
-              Free Consultancy
+              Get Free Solution Audit
             </a>
             <a
-              className="group flex items-center justify-center gap-2 text-on-surface font-label-md border border-white/10 px-8 py-4 rounded-lg hover:bg-white/5 transition-all"
-              href="#"
+              className="group flex items-center justify-center gap-2 text-on-surface font-label-md border border-white/20 px-8 py-4 rounded-lg hover:bg-white/10 transition-all"
+              href="#the-problem"
             >
-              VIEW ALL WORK
+              SEE HOW WE SOLVE IT
               <span className="material-symbols-outlined group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
-                north_east
+                arrow_downward
               </span>
             </a>
           </div>
           <div className="pt-8 flex items-center gap-6">
-            <p className="text-label-sm text-text-muted uppercase tracking-wider">Review On</p>
+            <p className="text-label-sm text-text-muted uppercase tracking-wider">Client Rating</p>
             <div className="flex items-center gap-2">
-              <div className="flex text-primary">
+              <div className="flex text-white">
                 <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>
                   star
                 </span>
@@ -53,7 +55,7 @@ export default function Hero() {
                   star
                 </span>
               </div>
-              <span className="font-label-md text-on-surface">5.0/5.0</span>
+              <span className="font-label-md text-on-surface">5.0 / 5.0 (150+ Enterprise Projects Delivered)</span>
             </div>
           </div>
         </div>

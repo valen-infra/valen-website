@@ -3,9 +3,48 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Valen Info | High-Tech IT Solutions & Digital Agency",
-  description: "Valen Info - Innovative Digital Agency and Creative Enterprise IT Solutions.",
+  description:
+    "Valen Info - Innovative Digital Agency and Creative Enterprise IT Solutions. Cloud architectures, custom software development, data analytics, and digital transformation.",
+  metadataBase: new URL("https://valen.info"),
+  alternates: {
+    canonical: "/",
+  },
   icons: {
-    icon: "/logo-icon.svg",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon-dark.png", type: "image/png", media: "(prefers-color-scheme: dark)" },
+      { url: "/icon.png", type: "image/png", media: "(prefers-color-scheme: light)" },
+      { url: "/icon-dark.png", sizes: "32x32", type: "image/png" },
+    ],
+    shortcut: "/icon-dark.png",
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
+  openGraph: {
+    title: "Valen Info | High-Tech IT Solutions & Digital Agency",
+    description:
+      "Transforming complex problems into elegant digital realities. High-tech enterprise solutions, cloud architectures, and digital services.",
+    url: "https://valen.info",
+    siteName: "Valen Info",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Valen Info - High-Tech IT Solutions & Digital Agency",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Valen Info | High-Tech IT Solutions & Digital Agency",
+    description:
+      "Transforming complex problems into elegant digital realities. High-tech enterprise solutions, cloud architectures, and digital services.",
+    images: ["/og-image.png"],
+    creator: "@valeninfo",
   },
 };
 
@@ -28,7 +67,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-background text-on-surface font-body-md selection:bg-primary selection:text-on-primary md:selection:bg-primary/30 md:selection:text-on-surface">
+      <body suppressHydrationWarning className="bg-background text-on-surface font-body-md selection:bg-primary selection:text-on-primary md:selection:bg-primary/30 md:selection:text-on-surface">
         {children}
       </body>
     </html>

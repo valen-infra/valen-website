@@ -1,117 +1,200 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
+import { CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 
 export default function ContactSection() {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    serviceType: "Website",
+    goal: "",
+  });
+
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.phone) return;
+
+    setStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw new Error(result.error || "Failed to send request.");
+      }
+
+      setStatus("success");
+      setFormData({
+        name: "",
+        phone: "",
+        serviceType: "Website",
+        goal: "",
+      });
+    } catch (err: unknown) {
+      console.error(err);
+      setStatus("error");
+      setErrorMessage(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    }
+  };
+
   return (
-    <section className="py-section-gap relative overflow-hidden">
+    <section id="contact" className="py-section-gap relative overflow-hidden bg-surface-container-lowest">
       <div className="max-w-container-max mx-auto px-gutter relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-          <div className="space-y-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="space-y-10">
             <div className="space-y-4">
-              <span className="text-primary font-label-md uppercase tracking-widest">Contact</span>
-              <h2 className="text-headline-lg font-bold">Let&apos;s Build Something Amazing</h2>
+              <span className="text-white/80 font-label-md uppercase tracking-widest px-4 py-1.5 rounded-full bg-white/5 border border-white/10 inline-block">
+                Start Your Transformation
+              </span>
+              <h2 className="text-headline-lg font-bold text-white leading-tight">
+                Ready To Get Unstuck? Let&apos;s Build Your Solution.
+              </h2>
               <p className="text-body-lg text-text-muted">
-                We&apos;re happy to answer any questions you may have and help your determine which of our services
-                best fit your needs.
+                Book a free 30-minute technical roadmap call with our principal engineers. We&apos;ll diagnose your current blockers and provide an actionable strategy to scale.
               </p>
             </div>
-            <div className="space-y-8">
-              <div className="flex gap-6 items-start">
-                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
-                  <span className="material-symbols-outlined">call</span>
+            <div className="space-y-6">
+              <div className="flex gap-4 items-start">
+                <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white font-bold bg-white/5 flex-shrink-0">
+                  01
                 </div>
                 <div>
-                  <p className="text-label-sm text-text-muted uppercase mb-1">Call Us Now</p>
-                  <h4 className="text-headline-md font-bold">+880 123 345 6789</h4>
+                  <h4 className="font-semibold text-white">No-Obligation Tech &amp; UX Audit</h4>
+                  <p className="text-body-md text-text-muted">We review your architecture, bottlenecks, and release cadence for free.</p>
                 </div>
               </div>
-              <div className="space-y-6 pt-4">
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center text-primary font-bold">
-                    01
-                  </div>
-                  <p className="text-body-md text-text-muted">
-                    Expert strategic planning for your digital roadmap.
-                  </p>
+              <div className="flex gap-4 items-start">
+                <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white font-bold bg-white/5 flex-shrink-0">
+                  02
                 </div>
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center text-primary font-bold">
-                    02
-                  </div>
-                  <p className="text-body-md text-text-muted">Agile development cycles with rapid prototyping.</p>
+                <div>
+                  <h4 className="font-semibold text-white">Clear Sprint Roadmap &amp; Cost Estimate</h4>
+                  <p className="text-body-md text-text-muted">Get transparent deliverables, timelines, and measurable milestones upfront.</p>
                 </div>
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center text-primary font-bold">
-                    03
-                  </div>
-                  <p className="text-body-md text-text-muted">Continuous support and performance monitoring.</p>
+              </div>
+              <div className="flex gap-4 items-start">
+                <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white font-bold bg-white/5 flex-shrink-0">
+                  03
+                </div>
+                <div>
+                  <h4 className="font-semibold text-white">Rapid Deployment Squad Ready</h4>
+                  <p className="text-body-md text-text-muted">Senior engineers ready to integrate and start shipping within 5 business days.</p>
                 </div>
               </div>
             </div>
           </div>
-          <div className="glass-panel p-10 md:p-12 rounded-[40px]">
-            <h5 className="text-headline-md font-bold mb-8">Make a Free Consulting</h5>
-            <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <label className="text-label-sm uppercase tracking-wider text-text-muted">First Name</label>
-                <input
-                  className="w-full bg-background/50 border border-white/10 rounded-xl px-4 py-3 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all"
-                  placeholder="John"
-                  type="text"
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-label-sm uppercase tracking-wider text-text-muted">Last Name</label>
-                <input
-                  className="w-full bg-background/50 border border-white/10 rounded-xl px-4 py-3 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all"
-                  placeholder="Doe"
-                  type="text"
-                />
-              </div>
-              <div className="md:col-span-2 space-y-2">
-                <label className="text-label-sm uppercase tracking-wider text-text-muted">Company</label>
-                <input
-                  className="w-full bg-background/50 border border-white/10 rounded-xl px-4 py-3 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all"
-                  placeholder="Acme Inc"
-                  type="text"
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-label-sm uppercase tracking-wider text-text-muted">Email</label>
-                <input
-                  className="w-full bg-background/50 border border-white/10 rounded-xl px-4 py-3 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all"
-                  placeholder="john@example.com"
-                  type="email"
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-label-sm uppercase tracking-wider text-text-muted">Phone</label>
-                <input
-                  className="w-full bg-background/50 border border-white/10 rounded-xl px-4 py-3 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all"
-                  placeholder="+1..."
-                  type="tel"
-                />
-              </div>
-              <div className="md:col-span-2 space-y-2">
-                <label className="text-label-sm uppercase tracking-wider text-text-muted">Message</label>
-                <textarea
-                  className="w-full bg-background/50 border border-white/10 rounded-xl px-4 py-3 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all"
-                  placeholder="How can we help?"
-                  rows={4}
-                ></textarea>
-              </div>
-              <div className="md:col-span-2 pt-4">
+
+          <div className="glass-panel p-8 md:p-10 rounded-[32px] border border-white/10 shadow-2xl">
+            <h3 className="text-2xl font-bold mb-2 text-white">Request Free Solution Audit</h3>
+            <p className="text-text-muted text-sm mb-6">Tell us where your project is stuck and what you want to achieve.</p>
+
+            {status === "success" ? (
+              <div className="p-8 rounded-2xl bg-white/5 border border-emerald-500/30 text-center space-y-4 animate-fade-in">
+                <div className="w-16 h-16 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mx-auto">
+                  <CheckCircle2 className="w-8 h-8" />
+                </div>
+                <h4 className="text-xl font-bold text-white">Roadmap Request Received!</h4>
+                <p className="text-text-muted text-sm leading-relaxed">
+                  Thank you for reaching out. Our engineering team has received your details and will call or message you back promptly.
+                </p>
                 <button
                   type="button"
-                  className="w-full bg-primary text-on-primary font-bold py-4 rounded-xl neon-glow-btn transition-all"
+                  onClick={() => setStatus("idle")}
+                  className="px-6 py-2.5 text-xs font-semibold bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors cursor-pointer"
                 >
-                  Submit Request
+                  Send another message
                 </button>
               </div>
-            </form>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {status === "error" && (
+                  <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 flex items-start gap-3 text-red-400 text-sm">
+                    <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                    <span>{errorMessage || "Failed to submit request. Please try again."}</span>
+                  </div>
+                )}
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <label className="text-xs uppercase tracking-wider text-text-muted font-medium">Your Name</label>
+                    <input
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:border-white focus:ring-1 focus:ring-white outline-none transition-all"
+                      placeholder="Alex Morgan"
+                      type="text"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      required
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-xs uppercase tracking-wider text-text-muted font-medium">Phone Number</label>
+                    <input
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:border-white focus:ring-1 focus:ring-white outline-none transition-all"
+                      placeholder="+1 (555) 000-0000"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs uppercase tracking-wider text-text-muted font-medium">Project Type</label>
+                  <select
+                    className="w-full bg-[#111] border border-white/10 rounded-xl px-4 py-3 text-white focus:border-white focus:ring-1 focus:ring-white outline-none transition-all cursor-pointer"
+                    value={formData.serviceType}
+                    onChange={(e) => setFormData({ ...formData, serviceType: e.target.value })}
+                  >
+                    <option value="Website">Website</option>
+                    <option value="App">App</option>
+                  </select>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs uppercase tracking-wider text-text-muted font-medium">What is your primary goal / timeline?</label>
+                  <textarea
+                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:border-white focus:ring-1 focus:ring-white outline-none transition-all resize-none"
+                    placeholder="Describe what you want to build..."
+                    rows={3}
+                    value={formData.goal}
+                    onChange={(e) => setFormData({ ...formData, goal: e.target.value })}
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={status === "loading"}
+                  className="w-full bg-white text-black font-bold py-4 rounded-xl neon-glow-btn transition-all duration-300 mt-2 cursor-pointer flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {status === "loading" ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <span>Sending Request...</span>
+                    </>
+                  ) : (
+                    "Claim Free 30-Min Roadmap Call"
+                  )}
+                </button>
+                <p className="text-center text-xs text-text-muted mt-2">
+                  🔒 100% confidential. No spam, strict NDA guaranteed.
+                </p>
+              </form>
+            )}
           </div>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none"></div>
     </section>
   );
 }

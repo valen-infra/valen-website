@@ -2,62 +2,115 @@ import React from "react";
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-section-gap">
-      <div className="max-w-container-max mx-auto px-gutter grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-        <div className="order-2 lg:order-1 relative">
-          <div className="rounded-3xl overflow-hidden">
-            <img
-              alt="Valen Info IT experts collaborating on high-stakes business strategy"
-              className="w-full h-auto object-cover rounded-3xl"
-              src="/images/why-choose-us.png"
-            />
+    <section id="the-problem" className="py-section-gap relative">
+      <div className="max-w-container-max mx-auto px-gutter">
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+          <span className="text-white/80 font-label-md uppercase tracking-widest px-4 py-1.5 rounded-full bg-white/5 border border-white/10 inline-block">
+            The Growth Roadblock
+          </span>
+          <h2 className="text-headline-lg font-bold text-white leading-tight">
+            Where Most Businesses Get Stuck — And How We Break Through
+          </h2>
+          <p className="text-body-lg text-text-muted">
+            You started with vision and momentum. But as you scale, unexpected technical debt, slow development, and outdated systems hold your business back from its true revenue potential.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+          {/* Where You Are Stuck Now */}
+          <div className="glass-panel p-8 md:p-10 rounded-3xl border border-red-500/20 bg-red-950/10 space-y-6 relative overflow-hidden">
+            <div className="flex items-center gap-3 text-red-400 font-bold uppercase tracking-wider font-label-md">
+              <span className="material-symbols-outlined text-2xl text-red-400">error</span>
+              Where You Might Be Stuck Today
+            </div>
+            <h3 className="text-2xl font-bold text-white">The Cost of Stalled Technology</h3>
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3">
+                <span className="material-symbols-outlined text-red-400 text-xl mt-0.5">close</span>
+                <div>
+                  <h4 className="font-semibold text-white">Sluggish Development Cycles</h4>
+                  <p className="text-body-md text-text-muted">Features take months to release instead of days, letting competitors take market share.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="material-symbols-outlined text-red-400 text-xl mt-0.5">close</span>
+                <div>
+                  <h4 className="font-semibold text-white">Clunky UX &amp; High Customer Churn</h4>
+                  <p className="text-body-md text-text-muted">Dated interfaces confuse users and cause valuable prospects to abandon your product.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="material-symbols-outlined text-red-400 text-xl mt-0.5">close</span>
+                <div>
+                  <h4 className="font-semibold text-white">Fragile Code &amp; Expensive Infrastructure</h4>
+                  <p className="text-body-md text-text-muted">Constant bug-fixing and runaway server bills drain resources without producing growth.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="material-symbols-outlined text-red-400 text-xl mt-0.5">close</span>
+                <div>
+                  <h4 className="font-semibold text-white">Missing AI &amp; Automation Edge</h4>
+                  <p className="text-body-md text-text-muted">Repetitive manual tasks slow down your internal team while others automate and scale.</p>
+                </div>
+              </li>
+            </ul>
           </div>
-          <div className="absolute -bottom-6 -right-6 bg-primary p-8 rounded-2xl shadow-xl hidden md:block">
-            <p className="text-label-md text-on-primary/80 mb-2">Market Leader</p>
-            <h3 className="text-headline-lg font-bold text-on-primary">#1</h3>
+
+          {/* What You Actually Want & What We Deliver */}
+          <div className="glass-panel p-8 md:p-10 rounded-3xl border border-white/20 bg-white/5 space-y-6 relative overflow-hidden shadow-[0_0_30px_rgba(255,255,255,0.05)]">
+            <div className="flex items-center gap-3 text-white font-bold uppercase tracking-wider font-label-md">
+              <span className="material-symbols-outlined text-2xl text-white">check_circle</span>
+              What You Want &amp; What We Deliver
+            </div>
+            <h3 className="text-2xl font-bold text-white">The Valen Info Solution Reality</h3>
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3">
+                <span className="material-symbols-outlined text-white text-xl mt-0.5" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  check_circle
+                </span>
+                <div>
+                  <h4 className="font-semibold text-white">Rapid Ship Velocity &amp; Clean Architecture</h4>
+                  <p className="text-body-md text-text-muted">Production-ready, battle-tested code deployed on predictable, rapid sprint cycles.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="material-symbols-outlined text-white text-xl mt-0.5" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  check_circle
+                </span>
+                <div>
+                  <h4 className="font-semibold text-white">High-Converting, Modern UI/UX Design</h4>
+                  <p className="text-body-md text-text-muted">Frictionless, responsive digital experiences that turn visitors into loyal customers.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="material-symbols-outlined text-white text-xl mt-0.5" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  check_circle
+                </span>
+                <div>
+                  <h4 className="font-semibold text-white">Scalable Cloud &amp; 99.99% Reliability</h4>
+                  <p className="text-body-md text-text-muted">Auto-scaling serverless and containerized systems optimized for speed and cost efficiency.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="material-symbols-outlined text-white text-xl mt-0.5" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  check_circle
+                </span>
+                <div>
+                  <h4 className="font-semibold text-white">AI Automation &amp; Intelligent Workflows</h4>
+                  <p className="text-body-md text-text-muted">Embedded GenAI and automated pipelines to give your business a decisive market advantage.</p>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
-        <div className="order-1 lg:order-2 space-y-8">
-          <div className="space-y-4">
-            <span className="text-primary font-label-md uppercase tracking-widest">Why Choose Us</span>
-            <h2 className="text-headline-lg font-bold leading-tight">Unlock the potential of your business.</h2>
-            <h4 className="text-body-lg text-primary font-semibold italic">
-              Best Creative IT Agency And Solutions Since 2005.
-            </h4>
-            <p className="text-body-md text-text-muted leading-relaxed">
-              Morbi interdum pellentesque nunc, luctus pretium nullagoneq luctus at. Aliquam cursus nunc arcu,
-              condimentum efficiturunt tellus iaculis faucibus Quisque gravida.
-            </p>
-          </div>
-          <div className="grid gap-6">
-            <div className="flex gap-6 items-start">
-              <div className="w-16 h-16 rounded-full border-2 border-primary/20 flex-shrink-0 flex items-center justify-center text-primary font-bold text-lg">
-                70%
-              </div>
-              <div>
-                <h4 className="font-bold text-lg mb-2">Strategy</h4>
-                <p className="text-body-md text-text-muted">
-                  Morbi interdum pellentesque nunc, luctuso pretium nullagoneq luctus at. Aliquam one cursus nunc arcu.
-                </p>
-              </div>
-            </div>
-            <div className="flex gap-6 items-start">
-              <div className="w-16 h-16 rounded-full border-2 border-primary/20 flex-shrink-0 flex items-center justify-center text-primary font-bold text-lg">
-                98%
-              </div>
-              <div>
-                <h4 className="font-bold text-lg mb-2">Audience</h4>
-                <p className="text-body-md text-text-muted">
-                  Morbi interdum pellentesque nunc, luctuso pretium nullagoneq luctus at. Aliquam one cursus nunc arcu.
-                </p>
-              </div>
-            </div>
-          </div>
+
+        <div className="mt-12 text-center">
           <a
-            className="inline-flex items-center gap-2 text-primary font-bold border-b border-primary pb-1 hover:gap-4 transition-all duration-300"
-            href="#"
+            href="#contact"
+            className="inline-flex items-center gap-2 bg-white text-black font-bold px-8 py-4 rounded-lg neon-glow-btn transition-all duration-300"
           >
-            About More <span className="material-symbols-outlined">arrow_forward</span>
+            Claim Your Free Solution Audit &amp; Roadmap
+            <span className="material-symbols-outlined">arrow_forward</span>
           </a>
         </div>
       </div>

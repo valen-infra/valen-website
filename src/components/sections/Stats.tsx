@@ -8,24 +8,24 @@ interface StatItem {
 
 const statsData: StatItem[] = [
   {
-    number: "5",
-    label: "Years",
-    description: "Working With Passion",
+    number: "4.2x",
+    label: "Faster Time-to-Market",
+    description: "Average velocity increase for client releases",
   },
   {
-    number: "1.5k",
-    label: "Customer",
-    description: "Satisfied Customer",
+    number: "99.99%",
+    label: "Uptime & Reliability",
+    description: "Enterprise SLA guaranteed architecture",
   },
   {
-    number: "800",
-    label: "Project",
-    description: "We Have Completed",
+    number: "60%",
+    label: "Cloud Cost Reduction",
+    description: "Through modern serverless & containerization",
   },
   {
-    number: "15",
-    label: "Awards",
-    description: "Achievement For Service",
+    number: "150+",
+    label: "Solutions Delivered",
+    description: "From stuck startups to scaling enterprises",
   },
 ];
 
