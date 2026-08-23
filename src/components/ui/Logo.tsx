@@ -34,6 +34,7 @@ export default function Logo({
     </div>
   );
 
+
   if (href) {
     return (
       <a href={href} className="focus:outline-none inline-block rounded-lg" aria-label="Valen Info Home">
