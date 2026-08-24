@@ -4,20 +4,20 @@ import Logo from "@/components/ui/Logo";
 export default function Footer() {
   return (
     <footer className="bg-surface-container-lowest pt-section-gap border-t border-white/5">
-      <div className="max-w-container-max mx-auto px-gutter grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-20">
-        <div className="space-y-8">
-          <Logo variant="stacked" size="lg" href="#" />
-          <p className="text-body-md text-text-muted">
+      <div className="max-w-container-max mx-auto px-gutter grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pb-12">
+        <div className="space-y-8 lg:col-span-4 lg:pr-10">
+          <Logo variant="stacked" size="lg" href="#home" />
+          <p className="text-body-md text-text-muted leading-relaxed">
             High-tech software engineering, AI workflow automation, and enterprise cloud architecture. We turn stalled projects into high-growth market leaders.
           </p>
           <div className="space-y-2">
             <p className="text-label-sm text-text-muted uppercase">Ready To Scale?</p>
-            <a href="#contact" className="text-headline-md font-bold text-white hover:text-slate-300 transition-colors inline-block">
+            <a href="mailto:contact@valen.info" className="text-headline-md font-bold text-white hover:text-slate-300 transition-colors inline-block">
               contact@valen.info
             </a>
           </div>
         </div>
-        <div className="space-y-8">
+        <div className="space-y-8 lg:col-span-3 lg:pl-6">
           <h4 className="text-label-md font-bold uppercase tracking-widest text-on-surface">Our Solutions</h4>
           <ul className="space-y-4">
             <li>
@@ -47,11 +47,11 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-        <div className="space-y-8">
+        <div className="space-y-8 lg:col-span-2 lg:pl-2">
           <h4 className="text-label-md font-bold uppercase tracking-widest text-on-surface">Navigation</h4>
           <ul className="space-y-4">
             <li>
-              <a className="text-text-muted hover:text-white transition-colors" href="#">
+              <a className="text-text-muted hover:text-white transition-colors" href="#home">
                 Home
               </a>
             </li>
@@ -71,13 +71,18 @@ export default function Footer() {
               </a>
             </li>
             <li>
+              <a className="text-text-muted hover:text-white transition-colors" href="#blueprint">
+                The Blueprint
+              </a>
+            </li>
+            <li>
               <a className="text-text-muted hover:text-white transition-colors" href="#contact">
                 Free Solution Audit
               </a>
             </li>
           </ul>
         </div>
-        <div className="space-y-8">
+        <div className="space-y-8 lg:col-span-3 lg:pl-4">
           <h4 className="text-label-md font-bold uppercase tracking-widest text-on-surface">Headquarters</h4>
           <div className="space-y-6">
             <div>

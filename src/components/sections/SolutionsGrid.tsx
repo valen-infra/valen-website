@@ -33,7 +33,7 @@ const solutionsData: SolutionItem[] = [
 
 export default function SolutionsGrid() {
   return (
-    <section className="py-section-gap bg-surface-container-lowest">
+    <section id="solutions" className="py-section-gap bg-surface-container-lowest">
       <div className="max-w-container-max mx-auto px-gutter">
         <div className="text-center mb-16 space-y-4">
           <span className="text-white/80 font-label-md uppercase tracking-widest px-4 py-1.5 rounded-full bg-white/5 border border-white/10 inline-block">

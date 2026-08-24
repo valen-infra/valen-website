@@ -31,7 +31,7 @@ const statsData: StatItem[] = [
 
 export default function Stats() {
   return (
-    <section className="py-20 relative z-10">
+    <section className="py-10 relative z-10">
       <div className="max-w-container-max mx-auto px-gutter">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {statsData.map((stat) => (

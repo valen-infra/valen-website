@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Logo from "@/components/ui/Logo";
 import { CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 
@@ -97,15 +97,24 @@ const solutions = [
 ];
 
 const navLinks = [
-  { href: "#the-problem", icon: "warning", label: "The Roadblocks" },
-  { href: "#services", icon: "code", label: "Our Solutions" },
-  { href: "#case-studies", icon: "rocket_launch", label: "Case Studies" },
-  { href: "#about", icon: "schema", label: "Blueprint" },
-  { href: "#contact", icon: "mail", label: "Get Solution Audit" },
+  { href: "#mobile-home", icon: "home", label: "Home" },
+  { href: "#mobile-the-problem", icon: "warning", label: "The Roadblocks" },
+  { href: "#mobile-services", icon: "code", label: "Our Solutions" },
+  { href: "#mobile-cases", icon: "rocket_launch", label: "Case Studies" },
+  { href: "#mobile-blueprint", icon: "schema", label: "The Blueprint" },
+  { href: "#mobile-contact", icon: "mail", label: "Get Solution Audit" },
+];
+
+const bottomNavItems = [
+  { id: "mobile-home", label: "Home", icon: "home", href: "#mobile-home" },
+  { id: "mobile-services", label: "Services", icon: "terminal", href: "#mobile-services" },
+  { id: "mobile-cases", label: "Work", icon: "work_outline", href: "#mobile-cases" },
+  { id: "mobile-contact", label: "Contact", icon: "send", href: "#mobile-contact" },
 ];
 
 export default function MobileHome() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("mobile-home");
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -116,6 +125,61 @@ export default function MobileHome() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const closeDrawer = () => setDrawerOpen(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 180;
+      const allSections = [
+        "mobile-contact",
+        "mobile-blueprint",
+        "mobile-cases",
+        "mobile-services",
+        "mobile-the-problem",
+        "mobile-home",
+      ];
+
+      for (const sectionId of allSections) {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          const top = el.offsetTop;
+          if (scrollPosition >= top) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
+      if (window.scrollY < 120) {
+        setActiveSection("mobile-home");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTarget = (href: string) => {
+    setDrawerOpen(false);
+    if (href === "#" || href === "#mobile-home" || href === "#home") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setActiveSection("mobile-home");
+      return;
+    }
+
+    const targetId = href.replace("#", "");
+    const elem = document.getElementById(targetId);
+    if (elem) {
+      const headerOffset = 80;
+      const elementPosition = elem.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+      setActiveSection(targetId);
+    }
+  };
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -157,17 +221,18 @@ export default function MobileHome() {
       <header className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-margin-mobile py-4">
         <div className="flex items-center gap-3">
           <button
-            className="active:scale-95 duration-200 text-white"
+            className="active:scale-95 duration-200 text-white cursor-pointer"
             onClick={() => setDrawerOpen(true)}
             aria-label="Open menu"
           >
             <span className="material-symbols-outlined">menu</span>
           </button>
-          <Logo size="sm" href="#" />
+          <Logo size="sm" href="#mobile-home" onClick={(e) => { e.preventDefault(); scrollToTarget("#mobile-home"); }} />
         </div>
         <a
-          href="#contact"
-          className="bg-white text-black font-bold text-xs px-3 py-1.5 rounded-md active:scale-95 transition-transform"
+          href="#mobile-contact"
+          onClick={(e) => { e.preventDefault(); scrollToTarget("#mobile-contact"); }}
+          className="bg-white text-black font-bold text-xs px-3 py-1.5 rounded-md active:scale-95 transition-transform cursor-pointer"
         >
           Audit Call
         </a>
@@ -175,31 +240,36 @@ export default function MobileHome() {
 
       {/* Drawer */}
       <div
-        className={`h-full w-4/5 fixed left-0 top-0 z-[60] bg-[#0c0c0c] border-r border-white/10 shadow-2xl flex flex-col p-stack-lg gap-stack-md transition-transform duration-300 ease-in-out ${
-          drawerOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`h-full w-4/5 fixed left-0 top-0 z-[60] bg-[#0c0c0c] border-r border-white/10 shadow-2xl flex flex-col p-stack-lg gap-stack-md transition-transform duration-300 ease-in-out ${drawerOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         <div className="flex justify-between items-center mb-4">
-          <Logo size="sm" href="#" />
-          <button className="text-on-surface-variant" onClick={closeDrawer} aria-label="Close menu">
+          <Logo size="sm" href="#mobile-home" onClick={(e) => { e.preventDefault(); scrollToTarget("#mobile-home"); }} />
+          <button className="text-on-surface-variant hover:text-white cursor-pointer" onClick={closeDrawer} aria-label="Close menu">
             <span className="material-symbols-outlined">close</span>
           </button>
         </div>
         <nav className="flex flex-col gap-2">
-          {navLinks.map((link, idx) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={closeDrawer}
-              className={
-                idx === 0
-                  ? "bg-white/10 text-white font-bold rounded-lg p-3 flex items-center gap-3"
-                  : "text-text-muted hover:bg-white/5 p-3 rounded-lg flex items-center gap-3 transition-all"
-              }
-            >
-              <span className="material-symbols-outlined">{link.icon}</span> {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const linkId = link.href.replace("#", "");
+            const isActive = activeSection === linkId;
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToTarget(link.href);
+                }}
+                className={`p-3 rounded-lg flex items-center gap-3 transition-all cursor-pointer font-medium ${isActive
+                    ? "bg-white/15 text-white font-bold"
+                    : "text-text-muted hover:text-white hover:bg-white/5"
+                  }`}
+              >
+                <span className="material-symbols-outlined text-white">{link.icon}</span> {link.label}
+              </a>
+            );
+          })}
         </nav>
       </div>
       <div
@@ -207,9 +277,9 @@ export default function MobileHome() {
         onClick={closeDrawer}
       />
 
-      <main className="pt-20 pb-20 overflow-x-hidden">
+      <main className="pt-20 pb-0 overflow-x-hidden">
         {/* Hero */}
-        <section className="px-margin-mobile py-stack-lg relative">
+        <section id="mobile-home" className="px-margin-mobile py-10 relative">
           <div className="flex flex-col gap-stack-md text-center">
             <span className="inline-block self-center px-4 py-1 rounded-full bg-white/10 text-white text-label-sm font-label-md uppercase tracking-widest border border-white/20">
               High-Tech Solution Partner
@@ -223,14 +293,16 @@ export default function MobileHome() {
             </p>
             <div className="flex flex-col gap-3 mt-4">
               <a
-                href="#contact"
-                className="bg-white text-black font-label-md py-4 px-8 rounded-lg font-bold shadow-lg shadow-white/10 active:scale-95 transition-transform text-center"
+                href="#mobile-contact"
+                onClick={(e) => { e.preventDefault(); scrollToTarget("#mobile-contact"); }}
+                className="bg-white text-black font-label-md py-4 px-8 rounded-lg font-bold shadow-lg shadow-white/10 active:scale-95 transition-transform text-center cursor-pointer"
               >
                 Claim Free Solution Audit
               </a>
               <a
-                href="#the-problem"
-                className="border border-white/20 text-white font-label-md py-4 px-8 rounded-lg font-bold hover:bg-white/5 active:scale-95 transition-transform text-center"
+                href="#mobile-the-problem"
+                onClick={(e) => { e.preventDefault(); scrollToTarget("#mobile-the-problem"); }}
+                className="border border-white/20 text-white font-label-md py-4 px-8 rounded-lg font-bold hover:bg-white/5 active:scale-95 transition-transform text-center cursor-pointer"
               >
                 See How We Solve It
               </a>
@@ -246,7 +318,7 @@ export default function MobileHome() {
         </section>
 
         {/* The Roadblocks vs Desired Solution */}
-        <section id="the-problem" className="px-margin-mobile py-16 bg-surface-container-low">
+        <section id="mobile-the-problem" className="px-margin-mobile py-10 bg-surface-container-low">
           <div className="flex flex-col gap-2 mb-8 text-center">
             <span className="text-xs uppercase tracking-widest text-text-muted">The Problem</span>
             <h2 className="font-headline-md text-headline-md text-white">Where You&apos;re Stuck Now</h2>
@@ -289,7 +361,7 @@ export default function MobileHome() {
         </section>
 
         {/* Stats */}
-        <section className="px-margin-mobile py-stack-lg bg-surface-container-lowest">
+        <section className="px-margin-mobile py-10 bg-surface-container-lowest">
           <div className="grid grid-cols-2 gap-4">
             {[
               { value: "4.2x", label: "Faster Releases" },
@@ -306,8 +378,8 @@ export default function MobileHome() {
         </section>
 
         {/* Services */}
-        <section id="services" className="px-margin-mobile py-20">
-          <div className="flex flex-col gap-2 mb-10 text-center">
+        <section id="mobile-services" className="px-margin-mobile py-10">
+          <div className="flex flex-col gap-2 mb-8 text-center">
             <span className="text-xs uppercase tracking-widest text-text-muted">Our Solutions</span>
             <h2 className="font-headline-md text-headline-md text-white">We Solve The Bottlenecks</h2>
           </div>
@@ -319,7 +391,11 @@ export default function MobileHome() {
                 </div>
                 <h3 className="font-headline-md text-[20px] text-white">{service.title}</h3>
                 <p className="text-text-muted font-body-md">{service.description}</p>
-                <a className="text-white font-label-md flex items-center gap-2 group font-bold" href="#contact">
+                <a
+                  className="text-white font-label-md flex items-center gap-2 group font-bold cursor-pointer"
+                  href="#mobile-contact"
+                  onClick={(e) => { e.preventDefault(); scrollToTarget("#mobile-contact"); }}
+                >
                   Solve This Problem{" "}
                   <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">
                     arrow_forward
@@ -331,8 +407,8 @@ export default function MobileHome() {
         </section>
 
         {/* Case Studies */}
-        <section id="case-studies" className="px-margin-mobile py-20 bg-surface-container-lowest">
-          <div className="flex flex-col gap-2 mb-10">
+        <section id="mobile-cases" className="px-margin-mobile py-10 bg-surface-container-lowest">
+          <div className="flex flex-col gap-2 mb-8">
             <span className="text-white/80 font-label-md uppercase tracking-wider">Proven Results</span>
             <h2 className="font-headline-md text-headline-md text-white">Real Client Success Stories</h2>
           </div>
@@ -350,7 +426,11 @@ export default function MobileHome() {
                   <h3 className="font-headline-md text-lg text-white font-bold mt-0.5">{item.title}</h3>
                 </div>
                 <p className="text-text-muted font-body-md text-sm leading-relaxed">{item.description}</p>
-                <a href="#contact" className="inline-flex items-center gap-1.5 text-white font-label-md text-sm font-bold pt-1">
+                <a
+                  href="#mobile-contact"
+                  onClick={(e) => { e.preventDefault(); scrollToTarget("#mobile-contact"); }}
+                  className="inline-flex items-center gap-1.5 text-white font-label-md text-sm font-bold pt-1 cursor-pointer"
+                >
                   Get Similar Results <span className="material-symbols-outlined text-sm">arrow_forward</span>
                 </a>
               </div>
@@ -358,8 +438,8 @@ export default function MobileHome() {
           </div>
         </section>
 
-        {/* 3-Step Process */}
-        <section id="about" className="px-margin-mobile py-20">
+        {/* 3-Step Process / Blueprint */}
+        <section id="mobile-blueprint" className="px-margin-mobile py-10">
           <div className="flex flex-col gap-stack-md">
             <div className="mb-6 rounded-2xl overflow-hidden border border-white/10 glass-card aspect-square">
               <video
@@ -398,7 +478,7 @@ export default function MobileHome() {
         </section>
 
         {/* Contact Form */}
-        <section id="contact" className="px-margin-mobile py-20">
+        <section id="mobile-contact" className="px-margin-mobile py-10">
           <div className="glass-card p-stack-lg rounded-3xl neon-shadow border border-white/10">
             <span className="text-xs uppercase tracking-widest text-text-muted">Take Action</span>
             <h2 className="font-headline-md text-headline-md mb-2 text-white">Claim Free Solution Audit</h2>
@@ -500,8 +580,16 @@ export default function MobileHome() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full mb-16 border-t border-white/5 bg-surface-container-lowest flex flex-col items-center text-center p-stack-lg gap-stack-md">
-        <Logo variant="stacked" size="md" href="#" />
+      <footer className="w-full mb-16 border-t border-white/5 bg-surface-container-lowest flex flex-col items-center text-center pt-8 pb-16 px-margin-mobile gap-stack-md">
+        <Logo
+          variant="stacked"
+          size="md"
+          href="#mobile-home"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToTarget("#mobile-home");
+          }}
+        />
         <p className="text-text-muted font-body-md max-w-xs">
           © 2026 Valen Info. High-tech enterprise software, AI systems, and digital solutions.
         </p>
@@ -522,35 +610,30 @@ export default function MobileHome() {
       </footer>
 
       {/* Bottom Nav */}
-      <nav className="fixed bottom-0 w-full z-50 bg-surface-container border-t border-white/5 backdrop-blur-md flex justify-around items-center h-16 px-4 pb-safe shadow-[0_-4px_20px_rgba(0,208,148,0.15)]">
-        <a
-          className="flex flex-col items-center justify-center bg-primary/20 text-primary rounded-full px-4 py-1 active:scale-90 transition-transform duration-150"
-          href="#"
-        >
-          <span className="material-symbols-outlined">home</span>
-          <span className="font-label-sm text-[10px]">Home</span>
-        </a>
-        <a
-          className="flex flex-col items-center justify-center text-on-secondary-container hover:text-primary-fixed active:scale-90 transition-transform duration-150"
-          href="#case-studies"
-        >
-          <span className="material-symbols-outlined">work_outline</span>
-          <span className="font-label-sm text-[10px]">Work</span>
-        </a>
-        <a
-          className="flex flex-col items-center justify-center text-on-secondary-container hover:text-primary-fixed active:scale-90 transition-transform duration-150"
-          href="#services"
-        >
-          <span className="material-symbols-outlined">terminal</span>
-          <span className="font-label-sm text-[10px]">Services</span>
-        </a>
-        <a
-          className="flex flex-col items-center justify-center text-on-secondary-container hover:text-primary-fixed active:scale-90 transition-transform duration-150"
-          href="#contact"
-        >
-          <span className="material-symbols-outlined">send</span>
-          <span className="font-label-sm text-[10px]">Contact</span>
-        </a>
+      <nav className="fixed bottom-0 left-0 right-0 z-40 bg-black/90 border-t border-white/10 backdrop-blur-xl flex justify-around items-center h-16 px-2 pb-safe shadow-[0_-4px_24px_rgba(0,0,0,0.8)]">
+        {bottomNavItems.map((item) => {
+          const isActive =
+            activeSection === item.id ||
+            (item.id === "mobile-cases" && activeSection === "mobile-blueprint") ||
+            (item.id === "mobile-services" && activeSection === "mobile-the-problem");
+          return (
+            <button
+              key={item.id}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToTarget(item.href);
+              }}
+              className={`flex flex-col items-center justify-center py-1 px-4 rounded-full transition-all duration-200 cursor-pointer active:scale-90 ${isActive
+                  ? "bg-white/15 text-white font-bold"
+                  : "text-text-muted hover:text-white"
+                }`}
+              aria-label={item.label}
+            >
+              <span className="material-symbols-outlined text-[20px]">{item.icon}</span>
+              <span className="font-label-sm text-[10px] tracking-wide mt-0.5">{item.label}</span>
+            </button>
+          );
+        })}
       </nav>
     </div>
   );

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Hero() {
   return (
-    <section className="relative pt-32 pb-20 md:pt-52 md:pb-32 overflow-hidden">
+    <section id="home" className="relative pt-28 pb-16 md:pt-40 md:pb-16 overflow-hidden">
       <div className="max-w-container-max mx-auto px-gutter grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
         <div className="space-y-8 max-w-2xl">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-on-surface font-label-md">
