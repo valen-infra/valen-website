@@ -13,7 +13,7 @@ const techPartners = [
 
 export default function PartnerMarquee() {
   return (
-    <section className="py-16 bg-surface-container-lowest border-y border-white/5 overflow-hidden">
+    <section className="py-10 bg-surface-container-lowest border-y border-white/5 overflow-hidden">
       <div className="max-w-container-max mx-auto px-gutter flex flex-col items-center gap-8">
         <h5 className="text-label-sm text-text-muted uppercase tracking-[3px] text-center font-semibold">
           Engineered With Modern Enterprise Ecosystems

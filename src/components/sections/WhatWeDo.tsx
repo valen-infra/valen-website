@@ -2,7 +2,7 @@ import React from "react";
 
 export default function WhatWeDo() {
   return (
-    <section className="py-section-gap">
+    <section id="blueprint" className="py-section-gap">
       <div className="max-w-container-max mx-auto px-gutter">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-8">

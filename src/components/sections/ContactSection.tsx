@@ -28,10 +28,9 @@ export default function ContactSection() {
         body: JSON.stringify(formData),
       });
 
-      const result = await res.json();
-
       if (!res.ok) {
-        throw new Error(result.error || "Failed to send request.");
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Failed to submit request.");
       }
 
       setStatus("success");
@@ -41,7 +40,7 @@ export default function ContactSection() {
         serviceType: "Website",
         goal: "",
       });
-    } catch (err: unknown) {
+    } catch (err) {
       console.error(err);
       setStatus("error");
       setErrorMessage(err instanceof Error ? err.message : "Something went wrong. Please try again.");

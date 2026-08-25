@@ -9,6 +9,7 @@ interface LogoProps {
   theme?: "dark" | "light";
   className?: string;
   href?: string;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 export default function Logo({
@@ -18,6 +19,7 @@ export default function Logo({
   theme = "dark",
   className = "",
   href = "#",
+  onClick,
 }: LogoProps) {
   const isDark = theme === "dark";
 
@@ -101,7 +103,8 @@ export default function Logo({
     return (
       <a
         href={href}
-        className="focus:outline-none focus-visible:ring-2 focus-visible:ring-primary inline-flex items-center rounded-lg"
+        onClick={onClick}
+        className="focus:outline-none focus-visible:ring-2 focus-visible:ring-primary inline-flex items-center rounded-lg cursor-pointer"
         aria-label="Valen Info Home"
       >
         {content}
