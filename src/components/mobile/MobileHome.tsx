@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import Logo from "@/components/ui/Logo";
 import { CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 
@@ -565,15 +566,24 @@ export default function MobileHome() {
             )}
 
             <div className="mt-8 flex flex-col gap-4 pt-6 border-t border-white/10">
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white">
+              <a href="tel:+919354325755" className="flex items-center gap-4 text-left">
+                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white shrink-0">
+                  <span className="material-symbols-outlined">phone</span>
+                </div>
+                <div>
+                  <p className="text-label-sm text-text-muted">Direct Call</p>
+                  <p className="font-headline-md text-[15px] text-white hover:underline">+91 9354325755</p>
+                </div>
+              </a>
+              <a href="mailto:Ankitsinghrajput.mail@gmail.com" className="flex items-center gap-4 text-left">
+                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white shrink-0">
                   <span className="material-symbols-outlined">mail</span>
                 </div>
                 <div>
                   <p className="text-label-sm text-text-muted">Client Inquiries</p>
-                  <p className="font-headline-md text-[15px] text-white">contact@valen.info</p>
+                  <p className="font-headline-md text-[15px] text-white hover:underline break-all">Ankitsinghrajput.mail@gmail.com</p>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </section>
@@ -594,16 +604,16 @@ export default function MobileHome() {
           © 2026 Valen Info. High-tech enterprise software, AI systems, and digital solutions.
         </p>
         <div className="flex flex-wrap justify-center gap-4 mt-2">
-          <a className="text-text-muted hover:text-white transition-colors text-label-md" href="#">
-            Privacy
-          </a>
-          <a className="text-text-muted hover:text-white transition-colors text-label-md" href="#">
-            Terms
-          </a>
-          <a className="text-text-muted hover:text-white transition-colors text-label-md" href="#">
+          <Link className="text-text-muted hover:text-white transition-colors text-label-md" href="/privacy-policy">
+            Privacy Policy
+          </Link>
+          <Link className="text-text-muted hover:text-white transition-colors text-label-md" href="/terms-and-conditions">
+            Terms &amp; Conditions
+          </Link>
+          <a className="text-text-muted hover:text-white transition-colors text-label-md" href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
             LinkedIn
           </a>
-          <a className="text-text-muted hover:text-white transition-colors text-label-md" href="#">
+          <a className="text-text-muted hover:text-white transition-colors text-label-md" href="https://github.com" target="_blank" rel="noopener noreferrer">
             GitHub
           </a>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import Logo from "@/components/ui/Logo";
 
 interface NavItem {
@@ -19,6 +20,8 @@ const navItems: NavItem[] = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -28,31 +31,42 @@ export default function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30);
 
-      // Active section detection
-      const scrollPosition = window.scrollY + 200;
-      for (let i = navItems.length - 1; i >= 0; i--) {
-        const item = navItems[i];
-        const el = document.getElementById(item.id);
-        if (el) {
-          const top = el.offsetTop;
-          if (scrollPosition >= top) {
-            setActiveSection(item.id);
-            break;
+      if (pathname === "/") {
+        // Active section detection
+        const scrollPosition = window.scrollY + 200;
+        for (let i = navItems.length - 1; i >= 0; i--) {
+          const item = navItems[i];
+          const el = document.getElementById(item.id);
+          if (el) {
+            const top = el.offsetTop;
+            if (scrollPosition >= top) {
+              setActiveSection(item.id);
+              break;
+            }
           }
         }
-      }
-      if (window.scrollY < 150) {
-        setActiveSection("home");
+        if (window.scrollY < 150) {
+          setActiveSection("home");
+        }
       }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]);
 
   const scrollToTarget = (href: string) => {
-    if (href === "#" || href === "#home") {
+    if (pathname !== "/") {
+      if (href === "#" || href === "#home" || href === "/") {
+        router.push("/");
+      } else {
+        router.push(`/${href}`);
+      }
+      return;
+    }
+
+    if (href === "#" || href === "#home" || href === "/") {
       window.scrollTo({ top: 0, behavior: "smooth" });
       if (window.history.pushState) {
         window.history.pushState(null, "", window.location.pathname);
@@ -77,6 +91,8 @@ export default function Header() {
         window.history.pushState(null, "", href);
       }
       setActiveSection(targetId);
+    } else {
+      router.push(`/${href}`);
     }
   };
 
@@ -112,32 +128,32 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 w-full z-50 hidden md:block">
+    <header className="fixed top-0 w-full z-50">
       {/* Top Utility Bar */}
       <div className="hidden md:flex bg-surface-container-lowest/90 backdrop-blur-md px-gutter h-12 border-b border-white/5 items-center justify-between">
         <div className="flex gap-6 text-label-sm text-text-muted">
           <a
-            href="tel:+180055582536"
+            href="tel:+919354325755"
             className="flex items-center gap-2 hover:text-white transition-colors"
             title="Call Valen Info"
           >
             <span className="material-symbols-outlined text-[16px] text-white">phone</span>
-            <span>+1 (800) 555-VALEN</span>
+            <span>+91 9354325755</span>
           </a>
           <a
-            href="mailto:contact@valen.info"
+            href="mailto:Ankitsinghrajput.mail@gmail.com"
             className="flex items-center gap-2 hover:text-white transition-colors"
             title="Email Valen Info"
           >
             <span className="material-symbols-outlined text-[16px] text-white">mail</span>
-            <span>contact@valen.info</span>
+            <span>Ankitsinghrajput.mail@gmail.com</span>
           </a>
         </div>
         <div className="flex gap-4 items-center">
           <span className="text-label-sm text-text-muted">
             For Client Support:{" "}
-            <a href="mailto:info@valen.info" className="text-on-surface hover:text-white underline-offset-2 hover:underline">
-              info@valen.info
+            <a href="mailto:Ankitsinghrajput.mail@gmail.com" className="text-on-surface hover:text-white underline-offset-2 hover:underline">
+              Ankitsinghrajput.mail@gmail.com
             </a>
           </span>
           <div className="flex gap-3 ml-4 border-l border-white/10 pl-4 items-center">

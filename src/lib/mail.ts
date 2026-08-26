@@ -29,8 +29,8 @@ export async function sendContactEmail(data: ContactFormData) {
   });
 
   const from = process.env.FROM_EMAIL || '"DealRush" <no-reply@dealrushs.com>';
-  const to = process.env.TO_EMAIL || "ankitsingh44844844@gmail.com";
-  const cc = process.env.CC_EMAIL || "ankitsinghrajput.mail@gmail.com";
+  const to = process.env.TO_EMAIL || "Ankitsinghrajput.mail@gmail.com";
+  const cc = process.env.CC_EMAIL || "Ankitsinghrajput.mail@gmail.com";
 
   const subject = `🚀 New Project Inquiry (${data.serviceType || "Website/App"}) from ${data.name || "Client"}`;
 
